@@ -1,6 +1,6 @@
 {
   "name": "roman-number-operations",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Do actions on roman numbers (convert number to roman version).",
   "main": "server.js",
   "scripts": {

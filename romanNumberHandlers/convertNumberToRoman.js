@@ -9,10 +9,10 @@ class NumberToRomanConverter {
         this.lowLimit = 0;
         this.upperLimit = 3999;       
 
-        this.decimalToRomanMap = this.buildNumberToRomanMap();
+        this.decimalToRomanMap = this._buildNumberToRomanMap();
     }
 
-    buildNumberToRomanMap(){
+    _buildNumberToRomanMap(){
         let romanMap = new Map(); 
 
         // We need the equivalent to romans characters:
