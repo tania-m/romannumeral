@@ -5,32 +5,30 @@
 let lowLimit = 0;
 let upperLimit = 255;
 
-// About roman numerals: https://en.wikipedia.org/wiki/Roman_numerals
-// Roman "numbers" include: I, V, X, L, C, D, M
 function convertNumToRoman(num){
     // start by checking if the parameter is actually a number...
     if(Number.isNaN(num) 
-        || !Number.isInteger() 
-        || !Number.isFinite()){
-
+        || !Number.isInteger(num) 
+        || !Number.isFinite(num)){
+            console.log("Handle exception here");
+        return '';
     }
 
     // check the conditions we have on the number
     if(num < lowLimit || num > upperLimit){
-
+        console.log("Handle exception here too");
+        return '';
     }
 
     if(num === 0){
         // roman number do not have a 0
+        console.log('0');
+        return '';
     }
 
     // now we are sure we have a number we can handle
-    // so let's start working on the conversion. 
     // Result will hold the converted value
     let result = '';
-
-    // the decimal values we support (1step)
-    // Use an array that "maps" values to the roman version.
 
     // We need the equivalent to romans characters:
     // C,L,X,V,I : 100, 50, 10, 5, 1 to built numbers;
@@ -40,6 +38,10 @@ function convertNumToRoman(num){
 
     // We can build all numbers up to 255 using this "alphabet":
     let romanMap = new Map(); // use a map for clarity. 
+    romanMap.set(1000, 'M');
+    romanMap.set(900, 'CM');
+    romanMap.set(500, 'D');
+    romanMap.set(400, 'CD');
     romanMap.set(100, 'C');
     romanMap.set(90, 'XC');
     romanMap.set(50, 'L');
@@ -53,9 +55,9 @@ function convertNumToRoman(num){
     // start converting by looping over the decimal values
     for (let [decimal, roman] of romanMap) { // keys in a map are kept in order of addition
         // so we have the key in the sorted order we need, aka from largest to smallest
-        // meaning roman number will be build from left to right
-
-        while (num % decimal < num) { // while we are still working on the same possible roman character    
+        
+        // roman number will be build from left to right
+        while (num % decimal < num) { // while we are still working on the same  roman character    
             result = result + roman; // append the roman char to the result
             num = num - decimal; // and reduce the num's value by what we just converted
         }
@@ -65,11 +67,12 @@ function convertNumToRoman(num){
 }
 
 
+
+
+
+
 // start only looking at functionality, tests in same file
 let assert = require('assert');
-
-// Checks that a test fails when it should,
-// and also that a test passes when it should
 
 describe('Basic number to roman conversion (0-255)', function () {
     it('should convert 1 to I', function () {
@@ -111,7 +114,7 @@ describe('Special cases number to roman conversion (0-255)', function () {
         });
 });
 
-describe('General number to roman conversion', function () {
+describe('General number to roman conversion (0-255)', function () {
     it('should return 123 converted to CXIII', function () {
             assert.equal(convertNumToRoman(123), 'CXXIII');
         });
@@ -133,4 +136,31 @@ describe('General number to roman conversion', function () {
     it('should return 8 converted to VIII', function () {
             assert.equal(convertNumToRoman(8), 'VIII');
         });
+});
+
+describe('Larger range number to roman conversion (0-3999)', function () {
+    it('should convert 500 to D', function () {
+            assert.equal(convertNumToRoman(500), 'D');
+        });
+
+    it('should convert 1000 to M', function () {
+            assert.equal(convertNumToRoman(1000), 'M');
+        });
+
+    it('should convert 1503 to ', function () {
+            assert.equal(convertNumToRoman(1503), 'MDIII');
+        });
+    
+    it('should convert 1606 to ', function () {
+            assert.equal(convertNumToRoman(1606), 'MDCVI');
+        });
+
+    it('should convert 1408 to ', function () {
+            assert.equal(convertNumToRoman(1408), 'MCDVIII');
+        });
+    
+    it('should convert 3999 to ', function () {
+            assert.equal(convertNumToRoman(3999), 'MMMCMXCIX');
+        });
+
 });
