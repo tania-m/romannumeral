@@ -5,6 +5,8 @@
 
 # 1 health endpoint
 
+# Security - Verify at least 0 known vulnerability
+
 # Docker file (container)
 
 # Self-healing capabilities?
