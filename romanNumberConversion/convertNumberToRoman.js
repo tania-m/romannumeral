@@ -8,7 +8,60 @@ let upperLimit = 255;
 // About roman numerals: https://en.wikipedia.org/wiki/Roman_numerals
 // Roman "numbers" include: I, V, X, L, C, D, M
 function convertNumToRoman(num){
+    // start by checking if the parameter is actually a number...
+    if(Number.isNaN(num) 
+        || !Number.isInteger() 
+        || !Number.isFinite()){
+
+    }
+
+    // check the conditions we have on the number
+    if(num < lowLimit || num > upperLimit){
+
+    }
+
+    if(num === 0){
+        // roman number do not have a 0
+    }
+
+    // now we are sure we have a number we can handle
+    // so let's start working on the conversion. 
+    // Result will hold the converted value
+    let result = '';
+
+    // the decimal values we support (1step)
+    // Use an array that "maps" values to the roman version.
+
+    // We need the equivalent to romans characters:
+    // C,L,X,V,I : 100, 50, 10, 5, 1 to built numbers;
+    // but also some exceptions because of how roman notation works
+    // (XC is 100-10=90, CX is 100+10=110)
+    // XC, XL, IX, IV: 90, 40, 9, 4.
+
+    // We can build all numbers up to 255 using this "alphabet":
+    let romanMap = new Map(); // use a map for clarity. 
+    romanMap.set(100, 'C');
+    romanMap.set(90, 'XC');
+    romanMap.set(50, 'L');
+    romanMap.set(40, 'XL');
+    romanMap.set(10, 'X');
+    romanMap.set(9, 'IX');
+    romanMap.set(5, 'V');
+    romanMap.set(4, 'IV');
+    romanMap.set(1, 'I');
     
+    // start converting by looping over the decimal values
+    for (let [decimal, roman] of romanMap) { // keys in a map are kept in order of addition
+        // so we have the key in the sorted order we need, aka from largest to smallest
+        // meaning roman number will be build from left to right
+
+        while (num % decimal < num) { // while we are still working on the same possible roman character    
+            result = result + roman; // append the roman char to the result
+            num = num - decimal; // and reduce the num's value by what we just converted
+        }
+    }
+
+    return result;
 }
 
 
