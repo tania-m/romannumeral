@@ -1,0 +1,21 @@
+{
+  "name": "roman-number-operations",
+  "version": "0.1.0",
+  "description": "Do actions on roman numbers (convert number to roman version).",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "roman",
+    "number"
+  ],
+  "author": "Tania Mathern",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "mocha-multi-reporters": "^1.1.7",
+    "mocha-simple-html-reporter": "^1.1.0"
+  }
+}
