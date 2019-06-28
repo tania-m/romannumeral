@@ -11,4 +11,4 @@
 
 # Self-healing capabilities?
 
-# Test: unit tests, possibly functional (toxiproxy?)
+# Test: unit tests, possibly functional (toxiproxy? No, pure nodejs: https://www.npmjs.com/package/toxy)
