@@ -1,3 +1,7 @@
+// Created: June 28th 2019
+// Author: Tania Mathern
+// Last edit: June 28th 2019
+
 const routes = require('express').Router();
 const NumberToRomanConverter = require('./../romanNumberHandlers/convertNumberToRoman.js');
 
@@ -5,7 +9,7 @@ routes.get('/health', (req, res) => {
     res.status(200).json({ message: 'Healthy' });
 });
 
-// there are no side-effects in this class.
+// there are no side-effects in the NumberToRomanConverter class.
 // so we can reuse it between requests, we don't need to reinstanciate it
 const converter = new NumberToRomanConverter();
 
@@ -44,6 +48,12 @@ routes.get('/romannumeral', (req, res) => { // http://localhost:8080/romannumera
             }
         }
     }
+});
+
+routes.get('*', function(req, res, next) {
+    let err = new Error('Not Found on this server');
+    err.statusCode = 404;
+    next(err);
 });
 
 module.exports = routes;

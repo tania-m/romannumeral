@@ -1,3 +1,7 @@
+// Created: June 28th 2019
+// Author: Tania Mathern
+// Last edit: June 28th 2019
+
 const express = require('express'),
     cors = require('cors'),
     helmet = require('helmet'),
