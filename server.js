@@ -5,6 +5,8 @@ const express = require('express'),
     slowDown = require('express-slow-down'),
     toobusy = require('node-toobusy');
 
+const routes = require('./routes');
+
 const isRelease = process.env.NODE_ENV === 'production';
 
 const app = express();
@@ -41,8 +43,8 @@ if(!isRelease){ // add debug/tracing tools
 // middlewares (end) --------------------------------------------------------
 
 
-// find and use routes
-app.use(require('./routes'));
+// Use routes
+app.use('/', routes);
 
 // fallback to default server settings if port is not defined
 const server = app.listen( process.env.PORT || 8080, function(){
