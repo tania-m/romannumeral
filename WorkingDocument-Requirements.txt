@@ -5,8 +5,10 @@
 
 # 1 health endpoint
 
+# Security - Verify at least 0 known vulnerability
+
 # Docker file (container)
 
 # Self-healing capabilities?
 
-# Test: unit tests, possibly functional (toxiproxy?)
+# Test: unit tests, possibly functional (toxiproxy? No, pure nodejs: https://www.npmjs.com/package/toxy)
