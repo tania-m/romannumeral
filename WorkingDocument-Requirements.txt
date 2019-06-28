@@ -1,0 +1,12 @@
+# 1 endpoint like this: http://localhost:8080/romannumeral?query={integer}
+===> Server listening to 8080
+===> route: romannumeral
+===> Number is between 1-255
+
+# 1 health endpoint
+
+# Docker file (container)
+
+# Self-healing capabilities?
+
+# Test: unit tests, possibly functional (toxiproxy?)
