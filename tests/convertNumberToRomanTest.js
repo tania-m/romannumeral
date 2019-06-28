@@ -203,7 +203,7 @@ describe('Key numbers conversions for large number conversions (>3999 up to 2 20
             assert.equal(converter.convertNumToRoman(5000000), 'V\u0305\u0305');
         });
 
-        it('should convert 9000000 to ', function () {
+        it('should convert 9000000 to I\u0305\u0305X\u0305\u0305', function () {
             let converter = new NumberToRomanConverter();
             assert.equal(converter.convertNumToRoman(9000000), 'I\u0305\u0305X\u0305\u0305');
         });
@@ -254,7 +254,7 @@ describe('Key numbers conversions for large number conversions (>3999 up to 2 20
         });
 });
 
-describe('Large number conversions (>3999 up to 2 200 000 000)', function () {
+describe('Large number conversions (>3999 up to 2200000000)', function () {
     it('should convert 1900400000 to M\u0305\u0305C\u0305\u0305M\u0305\u0305C\u0305D\u0305', function () {
         let converter = new NumberToRomanConverter();
         assert.equal(converter.convertNumToRoman(1900400000), 'M\u0305\u0305C\u0305\u0305M\u0305\u0305C\u0305D\u0305');

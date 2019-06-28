@@ -17,8 +17,8 @@ const app = express();
 
 
 // middlewares -------------------------------------------------------------
-app.use(cors()); 
-app.use(hpp()); // avoid parameter pollution
+app.use(cors()); // in case there are (legitimate) requests coming from another domain
+app.use(hpp()); // avoid parameter pollution (last value wins)
 app.use(helmet()); // for header security
 
 // rate limiter

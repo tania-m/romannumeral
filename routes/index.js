@@ -2,6 +2,8 @@
 // Author: Tania Mathern
 // Last edit: June 28th 2019
 
+let apiVersion = '0.2.0';
+
 const routes = require('express').Router();
 const NumberToRomanConverter = require('./../romanNumberHandlers/convertNumberToRoman.js');
 
@@ -29,17 +31,19 @@ routes.get('/romannumeral', (req, res) => { // http://localhost:8080/romannumera
             case 'NOT_AN_INTEGER' : {
                 res.status(422).json({ error: e.code, 
                                         message: e.message,
-                                        apiVersion: 'TOADD' });
+                                        apiVersion: apiVersion });
                 break;
             }
             case 'OUT_OF_RANGE' : {
                 res.status(422).json({ error: e.code, 
-                                        message: e.message });
+                                        message: e.message,
+                                        apiVersion: apiVersion });
                 break;
             }
             case 'VALUE_IS_ZERO' : {
                 res.status(422).json({ error: e.code, 
-                                        message: e.message });
+                                        message: e.message,
+                                        apiVersion: apiVersion });
                 break;
             }
             default: {
