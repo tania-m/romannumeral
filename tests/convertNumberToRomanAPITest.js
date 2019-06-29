@@ -154,7 +154,7 @@ describe('Responds to non existing routes with 404', function () {
     });
 });
 
-/*describe('Responds to invalid routes with error', function () {
+describe('Responds to edge cases without error', function () {
     var server;
 
     beforeEach(function () {
@@ -164,4 +164,146 @@ describe('Responds to non existing routes with 404', function () {
     afterEach(function () {
         server.close();
     });
-});*/
+
+    it('Parameter sent as string, but still capable to return a response', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: 249 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, {
+                    'roman': 'CCXLIX'
+                },
+            done);
+    });
+});
+
+describe('Uncapitalizes parts of URL if needed', function () {
+    var server;
+
+    beforeEach(function () {
+        server = require('./../server.js');
+    });
+
+    afterEach(function () {
+        server.close();
+    });
+
+    it('responds to /ROMANNUMERAL (query = 249)', function testSlash(done) {
+        request(server)
+            .get('/ROMANNUMERAL')
+            .query({ query: 249 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, {
+                    'roman': 'CCXLIX'
+                },
+            done);
+    });
+
+    it('responds to /RoMaNnUmErAl (query = 249)', function testSlash(done) {
+        request(server)
+            .get('/ROMANNUMERAL')
+            .query({ query: 249 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, {
+                    'roman': 'CCXLIX'
+                },
+            done);
+    });
+});
+
+describe('Responds to invalid routes with error', function () {
+    var server;
+
+    beforeEach(function () {
+        server = require('./../server.js');
+    });
+
+    afterEach(function () {
+        server.close();
+    });
+
+    it('HPP: Keeps only last parameter of the parameters with same name in query', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: 104, query: 249 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, {
+                    'roman': 'CCXLIX'
+                },
+            done);
+    });
+
+    it('Responds with an error for empty parameter', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: ' ' })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                    'error': 'NOT_AN_INTEGER',
+                    'message': 'Parameter is not an integer',
+                    'apiVersion': '0.2.0'
+                },
+            done);
+    });
+
+    it('Responds with an error for string parameter', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: 'a-string' })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                    'error': 'NOT_AN_INTEGER',
+                    'message': 'Parameter is not an integer',
+                    'apiVersion': '0.2.0'
+                },
+            done);
+    });
+
+    it('Responds with an error for value out of range', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: 99999999999999 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                    'error': 'OUT_OF_RANGE',
+                    'message': 'Parameter is not within range',
+                    'apiVersion': '0.2.0'
+                },
+            done);
+    });
+
+    it('Responds with an error for value out of range', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: -1 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                    'error': 'OUT_OF_RANGE',
+                    'message': 'Parameter is not within range',
+                    'apiVersion': '0.2.0'
+                },
+            done);
+    });
+
+    it('Responds with an error for 0 (no 0 in roman notation)', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: 0 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                    'error': 'VALUE_IS_ZERO',
+                    'message': 'Parameter value is 0, roman numbers do not have a 0',
+                    'apiVersion': '0.2.0'
+                },
+            done);
+    });
+});
