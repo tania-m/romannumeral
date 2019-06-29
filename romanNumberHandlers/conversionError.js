@@ -1,7 +1,7 @@
 /** Custom exception class for conversion errors.
  */
 class ConversionError extends Error {
-     /**
+    /**
      * Construct a custom conversion exception/error.
      * @param {string} message, error message
      * @param {string} code, error code
