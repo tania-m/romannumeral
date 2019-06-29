@@ -33,6 +33,7 @@ routes.get('/romannumeral', (req, res) => { // http://localhost:8080/romannumera
         catch (e) {
             console.log(e);
             switch(e.code){
+                // NOT_AN_INTEGER cannot happen, user input was validated before
                 case 'OUT_OF_RANGE' : {
                     res.status(422).json({ error: e.code, 
                                             message: e.message });

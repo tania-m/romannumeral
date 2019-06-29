@@ -87,7 +87,7 @@ class NumberToRomanConverter {
         // start by checking if the parameter is actually a number...
         if(Number.isNaN(num) 
             || !Number.isInteger(num) 
-            || !Number.isFinite(num)){
+            || !Number.isFinite(num)){ // in case this file is used as a library, be paranoid
             throw new ConversionError('Parameter is not an integer', 'NOT_AN_INTEGER');
         }
     
