@@ -1,4 +1,4 @@
-var request = require('supertest');
+const request = require('supertest');
 
 describe('Responds to valid routes', function () {
     var server;
@@ -168,11 +168,63 @@ describe('Responds to edge cases without error', function () {
     it('Parameter sent as string, but still capable to return a response', function testSlash(done) {
         request(server)
             .get('/romannumeral')
-            .query({ query: 249 })
+            .query({ query: '249' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200, {
                     'roman': 'CCXLIX'
+                },
+            done);
+    });
+
+    it('Parameter sent as 0249, should be parsed to radix 10', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: '0249' })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, {
+                    'roman': 'CCXLIX'
+                },
+            done);
+    });
+
+    it('Parameter sent as 4/2, truncates the fraction to 4', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: '4/2' })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200, {
+                    'roman': 'IV'
+                },
+            done);
+    });
+
+    it('Parameter sent as string, ignore everything except first number', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: '"1;DROP TABLE users"' })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                'error': 'NOT_AN_INTEGER',
+                'message': 'Parameter is not an integer',
+                'apiVersion': '0.2.0'
+                },
+            done);
+    });
+
+    it('Parameter sent as string, fail to process', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: '"1\'; DROP TABLE users-- 1"' })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                'error': 'NOT_AN_INTEGER',
+                'message': 'Parameter is not an integer',
+                'apiVersion': '0.2.0'
                 },
             done);
     });
@@ -196,7 +248,7 @@ describe('Uncapitalizes parts of URL if needed', function () {
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200, {
-                    'roman': 'CCXLIX'
+                    'roman' : 'CCXLIX'
                 },
             done);
     });
@@ -241,6 +293,20 @@ describe('Responds to invalid routes with error', function () {
         request(server)
             .get('/romannumeral')
             .query({ query: ' ' })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                    'error': 'NOT_AN_INTEGER',
+                    'message': 'Parameter is not an integer',
+                    'apiVersion': '0.2.0'
+                },
+            done);
+    });
+
+    it('Responds with an error for empty parameter', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: '[a-z]' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(422, {
@@ -297,6 +363,20 @@ describe('Responds to invalid routes with error', function () {
         request(server)
             .get('/romannumeral')
             .query({ query: 0 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                    'error': 'VALUE_IS_ZERO',
+                    'message': 'Parameter value is 0, roman numbers do not have a 0',
+                    'apiVersion': '0.2.0'
+                },
+            done);
+    });
+
+    it('Responds with an error for 0 as string (no 0 in roman notation)', function testSlash(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: '0' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(422, {

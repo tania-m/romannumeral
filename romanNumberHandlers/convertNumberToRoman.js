@@ -121,5 +121,5 @@ class NumberToRomanConverter {
 }
 module.exports = NumberToRomanConverter;
 
-let demo = new NumberToRomanConverter();
-console.log(demo._buildNumberToRomanMap());
+//let demo = new NumberToRomanConverter();
+//console.log(demo._buildNumberToRomanMap());

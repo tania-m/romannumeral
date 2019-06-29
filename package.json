@@ -4,7 +4,7 @@
   "description": "Do actions on roman numbers (convert number to roman version).",
   "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "start": "node server.js"
   },
   "keywords": [
     "roman",

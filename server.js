@@ -11,7 +11,7 @@ const express = require('express'),
 
 const routes = require('./routes');
 
-const isRelease = process.env.NODE_ENV === 'production';
+const isRelease = process.env.NODE_ENV === 'dev';
 
 const app = express();
 
