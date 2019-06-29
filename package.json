@@ -4,7 +4,8 @@
   "description": "Do actions on roman numbers (convert number to roman version).",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "mocha test"
   },
   "keywords": [
     "roman",
@@ -28,6 +29,7 @@
     "helmet": "^3.18.0",
     "hpp": "^0.2.2",
     "morgan": "^1.9.1",
-    "node-toobusy": "^0.6.3"
+    "node-toobusy": "^0.6.3",
+    "winston": "^3.2.1"
   }
 }

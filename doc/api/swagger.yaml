@@ -1,0 +1,73 @@
+swagger: "2.0"
+info:
+  description: "This server takes in a number and outputs a roman numeral. Extension 1: Expand the set of numbers to 1-3999. Extension 2: Expand the set of numbers to include the Vinculum addition using UTF-8 to roman numerals greater than 3999 and handle all numbers up to 2,200,000,000."
+  version: "1.0.0"
+  title: "Decimal number to roman number converter"
+basePath: "/"
+tags:
+- name: "romannumeral"
+  description: "Number to roman number notation conversion"
+- name: "health"
+  description: "Check server health"
+schemes:
+- "https"
+- "http"
+paths:
+  /romannumeral:
+    get:
+      tags:
+      - "romannumeral"
+      summary: "Add a new pet to the store"
+      description: ""
+      operationId: "convertNumToRoman"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "num"
+        in: "query"
+        description: "(Decimal) number) to convert to roman number"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Converted roman number"
+          schema:
+            $ref: "#/definitions/RomanNumber"
+        422:
+          description: "Invalid input - The request was well-formed but was unable to be followed due to semantic errors."
+          schema:
+            $ref: "#/definitions/ConversionError"
+          
+  /heartbeat:
+    get:
+      tags:
+      - "health"
+      summary: "Server heartbeat"
+      description: "Gets the server health"
+      operationId: "heartbeat"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Server is healthy"
+          
+definitions:
+  RomanNumber:
+    type: "object"
+    properties:
+      roman:
+        type: "string"
+        description: "roman number (in UTF-8 format)"
+  ConversionError:
+    type: "object"
+    properties:
+      error:
+        type: "string"
+        description: "error code"
+      message:
+        type: "string"
+        description: "error message"
+      apiVersion:
+        type: "string"
+        description: "api version"
+  

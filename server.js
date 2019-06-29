@@ -7,7 +7,8 @@ const express = require('express'),
     helmet = require('helmet'),
     hpp = require('hpp'),
     slowDown = require('express-slow-down'),
-    toobusy = require('node-toobusy');
+    toobusy = require('node-toobusy'),
+    winston = require('winston');
 
 const routes = require('./routes');
 
@@ -46,6 +47,17 @@ if(!isRelease){ // add debug/tracing tools
 }
 // middlewares (end) --------------------------------------------------------
 
+// Logging into files -------------------------------------------------------
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    defaultMeta: { service: 'user-service' },
+    transports: [
+        new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
+        new winston.transports.File({ filename: 'logs/combined.log' })
+    ]
+});
+// Logging into files (end) -------------------------------------------------
 
 // Use routes
 app.use('/', routes);

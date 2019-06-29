@@ -4,11 +4,15 @@
 
 // About roman numerals: https://www.mathsisfun.com/roman-numerals.html
 // For large roman numerals: http://roman-numerals.20m.com/
-// About vedic mathematics: http://mathlearners.com/vedic-mathematics/basic-requisites/
 
 let ConversionError = require('./conversionError.js');
 
+/** This class is a converter for integers to roman numerals (values between 0 and 2200000000).
+ */
 class NumberToRomanConverter {
+    /**
+     * Construct a number to roman converted for values between 0 and 2200000000
+     */
     constructor(){
         this.lowLimit = 0;
         this.upperLimit = 2200000000; // smaller than       
@@ -16,6 +20,10 @@ class NumberToRomanConverter {
         this.decimalToRomanMap = this._buildNumberToRomanMap();
     }
 
+    /**
+     * This method builds the lookup table for key integer to roman values.
+     * @returns {string} lookup map
+     */
     _buildNumberToRomanMap(){
         let romanMap = new Map(); 
 
@@ -83,6 +91,11 @@ class NumberToRomanConverter {
         return romanMap;
     }
 
+    /**
+     * This method turns an integer into a roman numeral.
+     * @param {integer} num, an integer between 0 and 2200000000
+     * @returns {string} number converted to roman notation
+     */
     convertNumToRoman(num){
         // start by checking if the parameter is actually a number...
         if(Number.isNaN(num) 
@@ -119,6 +132,7 @@ class NumberToRomanConverter {
         return result;
     }
 }
+
 module.exports = NumberToRomanConverter;
 
 //let demo = new NumberToRomanConverter();
