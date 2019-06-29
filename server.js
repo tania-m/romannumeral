@@ -62,9 +62,31 @@ const logger = winston.createLogger({
 // Use routes
 app.use('/', routes);
 
+// Handle shutdown signals
+process.on('SIGTERM', shutDown);
+process.on('SIGINT', shutDown);
+
 // fallback to default server settings if port is not defined
 const server = app.listen( process.env.PORT || 8080, function(){
     console.log('Listening on port ' + server.address().port);
 });
+
+// graceful shutdown
+/*
+    Gracefully shutdowns the server on SIGTERM or SIGINT kill signals.
+    Tries to properly close server/connections before shutting the server down.
+*/
+function shutDown() {
+    console.log('Received kill signal (SIGINT || SIGTERM), shutting down gracefully');
+    server.close(() => {
+        console.log('Server closed');
+        process.exit(0);
+    });
+
+    setTimeout(() => {c
+        console.error('Could not close remaining connections in time, forcing server shutdown');
+        process.exit(1);
+    }, 10000);
+}
 
 module.exports = server;
