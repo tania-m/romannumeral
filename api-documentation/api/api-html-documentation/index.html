@@ -1010,7 +1010,7 @@ except ApiException as e:
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Romannumeral-convertNumToRoman-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/romannumeral?num="</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/romannumeral?query="</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Romannumeral-convertNumToRoman-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1026,9 +1026,9 @@ public class RomannumeralApiExample {
     public static void main(String[] args) {
         
         RomannumeralApi apiInstance = new RomannumeralApi();
-        Integer num = 56; // Integer | (Decimal) number) to convert to roman number
+        Integer query = 56; // Integer | (Decimal) number to convert to roman number
         try {
-            RomanNumber result = apiInstance.convertNumToRoman(num);
+            RomanNumber result = apiInstance.convertNumToRoman(query);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling RomannumeralApi#convertNumToRoman");
@@ -1045,9 +1045,9 @@ public class RomannumeralApiExample {
 
     public static void main(String[] args) {
         RomannumeralApi apiInstance = new RomannumeralApi();
-        Integer num = 56; // Integer | (Decimal) number) to convert to roman number
+        Integer query = 56; // Integer | (Decimal) number to convert to roman number
         try {
-            RomanNumber result = apiInstance.convertNumToRoman(num);
+            RomanNumber result = apiInstance.convertNumToRoman(query);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling RomannumeralApi#convertNumToRoman");
@@ -1061,12 +1061,12 @@ public class RomannumeralApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Romannumeral-convertNumToRoman-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Integer *num = 56; // (Decimal) number) to convert to roman number
+                              <pre class="prettyprint"><code class="language-cpp">Integer *query = 56; // (Decimal) number to convert to roman number
 
 RomannumeralApi *apiInstance = [[RomannumeralApi alloc] init];
 
 // Add a new pet to the store
-[apiInstance convertNumToRomanWith:num
+[apiInstance convertNumToRomanWith:query
               completionHandler: ^(RomanNumber output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -1083,7 +1083,7 @@ RomannumeralApi *apiInstance = [[RomannumeralApi alloc] init];
 
 var api = new DecimalNumberToRomanNumberConverter.RomannumeralApi()
 
-var num = 56; // {Integer} (Decimal) number) to convert to roman number
+var query = 56; // {Integer} (Decimal) number to convert to roman number
 
 
 var callback = function(error, data, response) {
@@ -1093,7 +1093,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.convertNumToRoman(num, callback);
+api.convertNumToRoman(query, callback);
 </code></pre>
                             </div>
 
@@ -1115,12 +1115,12 @@ namespace Example
         {
             
             var apiInstance = new RomannumeralApi();
-            var num = 56;  // Integer | (Decimal) number) to convert to roman number
+            var query = 56;  // Integer | (Decimal) number to convert to roman number
 
             try
             {
                 // Add a new pet to the store
-                RomanNumber result = apiInstance.convertNumToRoman(num);
+                RomanNumber result = apiInstance.convertNumToRoman(query);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1138,10 +1138,10 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\RomannumeralApi();
-$num = 56; // Integer | (Decimal) number) to convert to roman number
+$query = 56; // Integer | (Decimal) number to convert to roman number
 
 try {
-    $result = $api_instance->convertNumToRoman($num);
+    $result = $api_instance->convertNumToRoman($query);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling RomannumeralApi->convertNumToRoman: ', $e->getMessage(), PHP_EOL;
@@ -1155,10 +1155,10 @@ use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::RomannumeralApi;
 
 my $api_instance = WWW::SwaggerClient::RomannumeralApi->new();
-my $num = 56; # Integer | (Decimal) number) to convert to roman number
+my $query = 56; # Integer | (Decimal) number to convert to roman number
 
 eval { 
-    my $result = $api_instance->convertNumToRoman(num => $num);
+    my $result = $api_instance->convertNumToRoman(query => $query);
     print Dumper($result);
 };
 if ($@) {
@@ -1175,11 +1175,11 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.RomannumeralApi()
-num = 56 # Integer | (Decimal) number) to convert to roman number
+query = 56 # Integer | (Decimal) number to convert to roman number
 
 try: 
     # Add a new pet to the store
-    api_response = api_instance.convert_num_to_roman(num)
+    api_response = api_instance.convert_num_to_roman(query)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RomannumeralApi->convertNumToRoman: %s\n" % e)</code></pre>
@@ -1198,11 +1198,11 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">num*</td>
+                                <tr><td style="width:150px;">query*</td>
 <td>
 
 
-    <div id="d2e199_convertNumToRoman_num">
+    <div id="d2e199_convertNumToRoman_query">
         <div class="json-schema-view">
             <div class="primitive">
                 <span class="type">
@@ -1210,7 +1210,7 @@ except ApiException as e:
                 </span>
 
                     <div class="inner description">
-                        (Decimal) number) to convert to roman number
+                        (Decimal) number to convert to roman number
                     </div>
             </div>
                 <div class="inner required">

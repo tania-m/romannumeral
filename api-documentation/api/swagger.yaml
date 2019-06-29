@@ -23,9 +23,9 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "num"
+      - name: "query"
         in: "query"
-        description: "(Decimal) number) to convert to roman number"
+        description: "(Decimal) number to convert to roman number"
         required: true
         type: "integer"
       responses:
