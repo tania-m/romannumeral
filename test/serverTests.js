@@ -11,9 +11,9 @@ describe('Loading express', function () {
         server.close();
     });
 
-    it('responds to /health', function testSlash(done) {
+    it('responds to /heartbeat', function testSlash(done) {
         request(server)
-            .get('/health')
+            .get('/heartbeat')
             .expect(200, done);
     });
 

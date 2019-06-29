@@ -38,7 +38,7 @@ class NumberToRomanConverter {
         // so we map the "alphabets":
 
         /* 
-            Note: Here we have a limit in size, so the look-up table is good:
+            **Note**: Here we have a limit in size, so the look-up table is good:
             We don't need to reconstruct the key roman numerals for large numbers.
             BUT if we remove the upper limit, we will have to construct the litterals dynamically;
             that's were we can start using the pattern we see ermerging:

@@ -1,9 +1,1 @@
-# 1 endpoint like this: http://localhost:8080/romannumeral?query={integer}
-===> Server listening to 8080
-===> route: romannumeral
-
 # Docker file (container)
-
-# Self-healing capabilities? No, crash if big failure
-
-# Test: unit tests, possibly functional (toxiproxy? No, pure nodejs: https://www.npmjs.com/package/toxy)
