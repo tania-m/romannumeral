@@ -54,3 +54,5 @@ app.use('/', routes);
 const server = app.listen( process.env.PORT || 8080, function(){
     console.log('Listening on port ' + server.address().port);
 });
+
+module.exports = server;

@@ -18,7 +18,8 @@
     "mocha": "^6.1.4",
     "mocha-multi-reporters": "^1.1.7",
     "mocha-simple-html-reporter": "^1.1.0",
-    "response-time": "^2.3.2"
+    "response-time": "^2.3.2",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "cors": "^2.8.5",
