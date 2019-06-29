@@ -16,6 +16,7 @@ describe('Responds to valid routes', function () {
             .get('/romannumeral')
             .query({ query: 50 })
             .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
             .expect(200, {
                     'roman': 'L'
                 },
@@ -27,6 +28,7 @@ describe('Responds to valid routes', function () {
             .get('/romannumeral')
             .query({ query: 149 })
             .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
             .expect(200, {
                     'roman': 'CXLIX'
                 },
@@ -38,6 +40,7 @@ describe('Responds to valid routes', function () {
             .get('/romannumeral')
             .query({ query: 249 })
             .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
             .expect(200, {
                     'roman': 'CCXLIX'
                 },
@@ -49,6 +52,7 @@ describe('Responds to valid routes', function () {
             .get('/romannumeral')
             .query({ query: 1606 })
             .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
             .expect(200, {
                     'roman': 'MDCVI'
                 },
@@ -60,6 +64,7 @@ describe('Responds to valid routes', function () {
             .get('/romannumeral')
             .query({ query: 3999 })
             .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
             .expect(200, {
                     'roman': 'MMMCMXCIX'
                 },
@@ -71,6 +76,7 @@ describe('Responds to valid routes', function () {
             .get('/romannumeral')
             .query({ query: 2200000000 })
             .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
             .expect(200, {
                     'roman': 'M\u0305\u0305M\u0305\u0305C\u0305\u0305C\u0305\u0305'
                 },
@@ -82,6 +88,7 @@ describe('Responds to valid routes', function () {
             .get('/romannumeral')
             .query({ query: 400000000 })
             .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
             .expect(200, {
                     'roman': 'C\u0305\u0305D\u0305\u0305'
                 },
@@ -93,6 +100,7 @@ describe('Responds to valid routes', function () {
             .get('/romannumeral')
             .query({ query: 1900400003 })
             .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
             .expect(200, {
                     'roman': 'M\u0305\u0305C\u0305\u0305M\u0305\u0305C\u0305D\u0305III'
                 },
@@ -100,7 +108,7 @@ describe('Responds to valid routes', function () {
     });
 });
 
-/*describe('Responds to non existing routes with 404', function () {
+describe('Responds to non existing routes with 404', function () {
     var server;
 
     beforeEach(function () {
@@ -110,9 +118,43 @@ describe('Responds to valid routes', function () {
     afterEach(function () {
         server.close();
     });
+
+    it('responds to /foobar ', function testSlash(done) {
+        request(server)
+            .get('/foobar')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(404, done);
+    });
+
+    it('responds to /foobarquery ', function testSlash(done) {
+        request(server)
+            .get('/foobarquery')
+            .query({ query: 1900400003 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(404, done);
+    });
+
+    it('responds to / ', function testSlash(done) { // route is not left visible
+        request(server)
+            .get('/')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(404, done);
+    });
+
+    it('responds to / ', function testSlash(done) { // route is not left visible
+        request(server)
+            .get('/')
+            .query({ query: 1900400003 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(404, done);
+    });
 });
 
-describe('Responds to invalid routes with error', function () {
+/*describe('Responds to invalid routes with error', function () {
     var server;
 
     beforeEach(function () {
