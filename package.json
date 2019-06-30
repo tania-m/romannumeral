@@ -1,23 +1,23 @@
 {
   "name": "roman-number-operations",
-  "version": "0.2.0",
-  "description": "Do actions on roman numbers (convert number to roman version).",
+  "version": "1.0.0",
+  "description": "Do actions on roman numbers (convert number to roman notation).",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha test"
+    "test": "mocha test",
+    "docker-build": "docker build . -t local:romannumeral"
   },
   "keywords": [
     "roman",
-    "number"
+    "number",
+    "conversion"
   ],
   "author": "Tania Mathern",
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
-    "mocha-multi-reporters": "^1.1.7",
-    "mocha-simple-html-reporter": "^1.1.0",
     "supertest": "^4.0.2"
   },
   "dependencies": {
