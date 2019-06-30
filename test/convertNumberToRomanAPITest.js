@@ -1,3 +1,5 @@
+"use strict";
+
 const request = require('supertest');
 
 describe('Responds to valid routes', function () {

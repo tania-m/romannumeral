@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 const apiVersion = process.env.API_VERSION || 'unknown';
 

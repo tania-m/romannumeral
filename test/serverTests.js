@@ -1,7 +1,9 @@
-var request = require('supertest');
+"use strict";
+
+const request = require('supertest');
 
 describe('Loading express', function () {
-    var server;
+    let server;
 
     beforeEach(function () {
         server = require('./../server.js');

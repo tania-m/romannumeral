@@ -1,3 +1,5 @@
+"use strict";
+
 const NumberToRomanConverter = require('./../romanNumberHandlers/convertNumberToRoman.js');
 const assert = require('assert');
 
@@ -86,7 +88,7 @@ describe('General number to roman conversion (0-255)', function () {
 });
 
 describe('No side-effects in between number to roman conversion (0-255)', function () {
-    it('should do more than one conversion (in serie)', function () {
+    it('should do more than one conversion (multiple calls)', function () {
             let converter = new NumberToRomanConverter();
             assert.equal(converter.convertNumToRoman(1), 'I');
             assert.equal(converter.convertNumToRoman(249), 'CCXLIX');
