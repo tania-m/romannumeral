@@ -1,6 +1,4 @@
-// Created: June 28th 2019
-// Author: Tania Mathern
-// Last edit: June 28th 2019
+'use strict'
 
 const express = require('express'),
     cors = require('cors'),
@@ -12,7 +10,10 @@ const express = require('express'),
 
 const routes = require('./routes');
 
-const isRelease = process.env.NODE_ENV === 'dev';
+// configure env and server
+const config = require('./config.js');
+
+const isRelease = process.env.NODE_ENV === 'production';
 
 const app = express();
 
@@ -41,7 +42,7 @@ app.use(function(req, res, next) {
 });
 
 if(!isRelease){ // add debug/tracing tools
-    app.use(require('morgan')('dev'));
+    app.use(require('morgan')('dev')); // verbose
 } else {
     app.use(require('morgan')('common'));
 }
