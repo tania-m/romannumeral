@@ -1,3 +1,5 @@
+'use strict'
+
 /** Custom exception class for conversion errors.
  */
 class ConversionError extends Error {

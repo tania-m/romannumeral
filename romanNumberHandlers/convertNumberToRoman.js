@@ -1,6 +1,4 @@
-// Created: June 28th 2019
-// Author: Tania Mathern
-// Last edit: June 28th 2019
+'use strict'
 
 // About roman numerals: https://www.mathsisfun.com/roman-numerals.html
 // For large roman numerals: http://roman-numerals.20m.com/

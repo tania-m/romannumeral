@@ -696,6 +696,15 @@ margin-bottom: 20px;
   <script>
     // Script section to load models into a JS Var
     var defs = {}
+        defs["APIInfo"] = {
+  "type" : "object",
+  "properties" : {
+    "version" : {
+      "type" : "string",
+      "description" : "semantic version number of the API"
+    }
+  }
+};
         defs["ConversionError"] = {
   "type" : "object",
   "properties" : {
@@ -710,6 +719,10 @@ margin-bottom: 20px;
     "apiVersion" : {
       "type" : "string",
       "description" : "api version"
+    },
+    "status" : {
+      "type" : "integer",
+      "description" : "HTTP status code"
     }
   }
 };
@@ -738,9 +751,12 @@ margin-bottom: 20px;
             -->
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
-                  <li class="nav-header" data-group="Health"><a href="#api-Health">API Methods - Health</a></li>
-                    <li data-group="Health" data-name="heartbeat" class="">
-                      <a href="#api-Health-heartbeat">heartbeat</a>
+                  <li class="nav-header" data-group="Monitoring"><a href="#api-Monitoring">API Methods - Monitoring</a></li>
+                    <li data-group="Monitoring" data-name="heartbeat" class="">
+                      <a href="#api-Monitoring-heartbeat">heartbeat</a>
+                    </li>
+                    <li data-group="Monitoring" data-name="version" class="">
+                      <a href="#api-Monitoring-version">version</a>
                     </li>
                   <li class="nav-header" data-group="Romannumeral"><a href="#api-Romannumeral">API Methods - Romannumeral</a></li>
                     <li data-group="Romannumeral" data-name="convertNumToRoman" class="">
@@ -765,10 +781,10 @@ margin-bottom: 20px;
           </div>
         </div>
         <div id="sections">
-                <section id="api-Health">
-                  <h1>Health</h1>
-                    <div id="api-Health-heartbeat">
-                      <article id="api-Health-heartbeat-0" data-group="User" data-name="heartbeat" data-version="0">
+                <section id="api-Monitoring">
+                  <h1>Monitoring</h1>
+                    <div id="api-Monitoring-heartbeat">
+                      <article id="api-Monitoring-heartbeat-0" data-group="User" data-name="heartbeat" data-version="0">
                         <div class="pull-left">
                           <h1>heartbeat</h1>
                           <p>Server heartbeat</p>
@@ -776,7 +792,7 @@ margin-bottom: 20px;
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Gets the server health</p>
+                        <p class="marked">Ask for a heartbeat of the server (respond 200 if up and running)</p>
                         <p></p>
                         <br />
                         <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/heartbeat</span></code></pre>
@@ -784,70 +800,70 @@ margin-bottom: 20px;
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Health-heartbeat-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Health-heartbeat-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Health-heartbeat-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Health-heartbeat-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Health-heartbeat-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Health-heartbeat-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Health-heartbeat-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Health-heartbeat-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Health-heartbeat-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Health-heartbeat-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Health-heartbeat-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-Monitoring-heartbeat-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Monitoring-heartbeat-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Monitoring-heartbeat-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Monitoring-heartbeat-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Monitoring-heartbeat-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Monitoring-heartbeat-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Monitoring-heartbeat-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Monitoring-heartbeat-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Monitoring-heartbeat-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Monitoring-heartbeat-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Monitoring-heartbeat-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Health-heartbeat-0-curl">
+                          <div class="tab-pane active" id="examples-Monitoring-heartbeat-0-curl">
                             <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/heartbeat"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Health-heartbeat-0-java">
+                          <div class="tab-pane" id="examples-Monitoring-heartbeat-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.HealthApi;
+import io.swagger.client.api.MonitoringApi;
 
 import java.io.File;
 import java.util.*;
 
-public class HealthApiExample {
+public class MonitoringApiExample {
 
     public static void main(String[] args) {
         
-        HealthApi apiInstance = new HealthApi();
+        MonitoringApi apiInstance = new MonitoringApi();
         try {
             apiInstance.heartbeat();
         } catch (ApiException e) {
-            System.err.println("Exception when calling HealthApi#heartbeat");
+            System.err.println("Exception when calling MonitoringApi#heartbeat");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Health-heartbeat-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.HealthApi;
+                          <div class="tab-pane" id="examples-Monitoring-heartbeat-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.MonitoringApi;
 
-public class HealthApiExample {
+public class MonitoringApiExample {
 
     public static void main(String[] args) {
-        HealthApi apiInstance = new HealthApi();
+        MonitoringApi apiInstance = new MonitoringApi();
         try {
             apiInstance.heartbeat();
         } catch (ApiException e) {
-            System.err.println("Exception when calling HealthApi#heartbeat");
+            System.err.println("Exception when calling MonitoringApi#heartbeat");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Health-heartbeat-0-groovy">
+  <div class="tab-pane" id="examples-Monitoring-heartbeat-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Health-heartbeat-0-objc">
+                            <div class="tab-pane" id="examples-Monitoring-heartbeat-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">
-HealthApi *apiInstance = [[HealthApi alloc] init];
+MonitoringApi *apiInstance = [[MonitoringApi alloc] init];
 
 // Server heartbeat
 [apiInstance heartbeatWithCompletionHandler: 
@@ -859,10 +875,10 @@ HealthApi *apiInstance = [[HealthApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Health-heartbeat-0-javascript">
+                            <div class="tab-pane" id="examples-Monitoring-heartbeat-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var DecimalNumberToRomanNumberConverter = require('decimal_number_to_roman_number_converter');
 
-var api = new DecimalNumberToRomanNumberConverter.HealthApi()
+var api = new DecimalNumberToRomanNumberConverter.MonitoringApi()
 
 var callback = function(error, data, response) {
   if (error) {
@@ -875,10 +891,10 @@ api.heartbeat(callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Health-heartbeat-0-angular">
+                            <!--<div class="tab-pane" id="examples-Monitoring-heartbeat-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Health-heartbeat-0-csharp">
+                            <div class="tab-pane" id="examples-Monitoring-heartbeat-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -892,7 +908,7 @@ namespace Example
         public void main()
         {
             
-            var apiInstance = new HealthApi();
+            var apiInstance = new MonitoringApi();
 
             try
             {
@@ -901,7 +917,7 @@ namespace Example
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling HealthApi.heartbeat: " + e.Message );
+                Debug.Print("Exception when calling MonitoringApi.heartbeat: " + e.Message );
             }
         }
     }
@@ -909,36 +925,36 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Health-heartbeat-0-php">
+                            <div class="tab-pane" id="examples-Monitoring-heartbeat-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\HealthApi();
+$api_instance = new Swagger\Client\Api\MonitoringApi();
 
 try {
     $api_instance->heartbeat();
 } catch (Exception $e) {
-    echo 'Exception when calling HealthApi->heartbeat: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MonitoringApi->heartbeat: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Health-heartbeat-0-perl">
+                            <div class="tab-pane" id="examples-Monitoring-heartbeat-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::HealthApi;
+use WWW::SwaggerClient::MonitoringApi;
 
-my $api_instance = WWW::SwaggerClient::HealthApi->new();
+my $api_instance = WWW::SwaggerClient::MonitoringApi->new();
 
 eval { 
     $api_instance->heartbeat();
 };
 if ($@) {
-    warn "Exception when calling HealthApi->heartbeat: $@\n";
+    warn "Exception when calling MonitoringApi->heartbeat: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Health-heartbeat-0-python">
+                            <div class="tab-pane" id="examples-Monitoring-heartbeat-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -946,13 +962,13 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.HealthApi()
+api_instance = swagger_client.MonitoringApi()
 
 try: 
     # Server heartbeat
     api_instance.heartbeat()
 except ApiException as e:
-    print("Exception when calling HealthApi->heartbeat: %s\n" % e)</code></pre>
+    print("Exception when calling MonitoringApi->heartbeat: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -970,6 +986,258 @@ except ApiException as e:
                             </ul>
 
                             <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Monitoring-version">
+                      <article id="api-Monitoring-version-0" data-group="User" data-name="version" data-version="0">
+                        <div class="pull-left">
+                          <h1>version</h1>
+                          <p>API version</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">Gets the API version</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/version</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Monitoring-version-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Monitoring-version-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Monitoring-version-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Monitoring-version-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Monitoring-version-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Monitoring-version-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Monitoring-version-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Monitoring-version-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Monitoring-version-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Monitoring-version-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Monitoring-version-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Monitoring-version-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/version"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Monitoring-version-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.MonitoringApi;
+
+import java.io.File;
+import java.util.*;
+
+public class MonitoringApiExample {
+
+    public static void main(String[] args) {
+        
+        MonitoringApi apiInstance = new MonitoringApi();
+        try {
+            APIInfo result = apiInstance.version();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MonitoringApi#version");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Monitoring-version-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.MonitoringApi;
+
+public class MonitoringApiExample {
+
+    public static void main(String[] args) {
+        MonitoringApi apiInstance = new MonitoringApi();
+        try {
+            APIInfo result = apiInstance.version();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MonitoringApi#version");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Monitoring-version-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Monitoring-version-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+MonitoringApi *apiInstance = [[MonitoringApi alloc] init];
+
+// API version
+[apiInstance versionWithCompletionHandler: 
+              ^(APIInfo output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Monitoring-version-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var DecimalNumberToRomanNumberConverter = require('decimal_number_to_roman_number_converter');
+
+var api = new DecimalNumberToRomanNumberConverter.MonitoringApi()
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.version(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Monitoring-version-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Monitoring-version-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class versionExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new MonitoringApi();
+
+            try
+            {
+                // API version
+                APIInfo result = apiInstance.version();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling MonitoringApi.version: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Monitoring-version-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\MonitoringApi();
+
+try {
+    $result = $api_instance->version();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MonitoringApi->version: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Monitoring-version-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::MonitoringApi;
+
+my $api_instance = WWW::SwaggerClient::MonitoringApi->new();
+
+eval { 
+    my $result = $api_instance->version();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling MonitoringApi->version: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Monitoring-version-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.MonitoringApi()
+
+try: 
+    # API version
+    api_response = api_instance.version()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling MonitoringApi->version: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Server is healthy </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-version-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-version-200-schema">
+                                  <div id='responses-version-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "Server is healthy",
+  "schema" : {
+    "$ref" : "#/definitions/APIInfo"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-version-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-version-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-version-200-schema-data' type='hidden' value=''></input>
+                                </div>
                             </div>
 
                         </article>

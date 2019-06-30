@@ -11,6 +11,16 @@ describe('Loading express', function () {
         server.close();
     });
 
+    it('responds to /version', function testSlash(done) {
+        // tests will not set ENV variables, so version defaults to 'unknown'
+        request(server)
+            .get('/version')
+            .expect(200, {
+                    'version': 'unknown'
+                },
+            done);
+    });
+
     it('responds to /heartbeat', function testSlash(done) {
         request(server)
             .get('/heartbeat')

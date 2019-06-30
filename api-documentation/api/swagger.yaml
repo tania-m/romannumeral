@@ -7,7 +7,7 @@ basePath: "/"
 tags:
 - name: "romannumeral"
   description: "Number to roman number notation conversion"
-- name: "health"
+- name: "monitoring"
   description: "Check server health"
 schemes:
 - "https"
@@ -41,9 +41,9 @@ paths:
   /heartbeat:
     get:
       tags:
-      - "health"
+      - "monitoring"
       summary: "Server heartbeat"
-      description: "Gets the server health"
+      description: "Ask for a heartbeat of the server (respond 200 if up and running)"
       operationId: "heartbeat"
       produces:
       - "application/json"
@@ -51,7 +51,28 @@ paths:
         200:
           description: "Server is healthy"
           
+  /version:
+    get:
+      tags:
+      - "monitoring"
+      summary: "API version"
+      description: "Gets the API version"
+      operationId: "version"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Server is healthy"
+          schema:
+            $ref: "#/definitions/APIInfo"
+          
 definitions:
+  APIInfo:
+    type: "object"
+    properties:
+      version:
+        type: "string"
+        description: "semantic version number of the API"
   RomanNumber:
     type: "object"
     properties:
@@ -70,4 +91,7 @@ definitions:
       apiVersion:
         type: "string"
         description: "api version"
+      status:
+        type: "integer"
+        description: "HTTP status code"
   

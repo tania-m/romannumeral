@@ -210,7 +210,7 @@ describe('Responds to edge cases without error', function () {
             .expect(422, {
                 'error': 'NOT_AN_INTEGER',
                 'message': 'Parameter is not an integer',
-                'apiVersion': '0.2.0'
+                'apiVersion': 'unknown'
                 },
             done);
     });
@@ -224,7 +224,7 @@ describe('Responds to edge cases without error', function () {
             .expect(422, {
                 'error': 'NOT_AN_INTEGER',
                 'message': 'Parameter is not an integer',
-                'apiVersion': '0.2.0'
+                'apiVersion': 'unknown'
                 },
             done);
     });
@@ -298,7 +298,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'NOT_AN_INTEGER',
                     'message': 'Parameter is not an integer',
-                    'apiVersion': '0.2.0'
+                    'apiVersion': 'unknown'
                 },
             done);
     });
@@ -312,7 +312,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'NOT_AN_INTEGER',
                     'message': 'Parameter is not an integer',
-                    'apiVersion': '0.2.0'
+                    'apiVersion': 'unknown'
                 },
             done);
     });
@@ -326,7 +326,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'NOT_AN_INTEGER',
                     'message': 'Parameter is not an integer',
-                    'apiVersion': '0.2.0'
+                    'apiVersion': 'unknown'
                 },
             done);
     });
@@ -340,7 +340,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'OUT_OF_RANGE',
                     'message': 'Parameter is not within range',
-                    'apiVersion': '0.2.0'
+                    'apiVersion': 'unknown'
                 },
             done);
     });
@@ -354,7 +354,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'OUT_OF_RANGE',
                     'message': 'Parameter is not within range',
-                    'apiVersion': '0.2.0'
+                    'apiVersion': 'unknown'
                 },
             done);
     });
@@ -368,7 +368,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'VALUE_IS_ZERO',
                     'message': 'Parameter value is 0, roman numbers do not have a 0',
-                    'apiVersion': '0.2.0'
+                    'apiVersion': 'unknown'
                 },
             done);
     });
@@ -382,7 +382,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'VALUE_IS_ZERO',
                     'message': 'Parameter value is 0, roman numbers do not have a 0',
-                    'apiVersion': '0.2.0'
+                    'apiVersion': 'unknown'
                 },
             done);
     });

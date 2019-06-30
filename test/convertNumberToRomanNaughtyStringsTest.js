@@ -354,7 +354,7 @@ describe('No crash with special strings', function () {
                 .expect(422, {
                         'error': 'NOT_AN_INTEGER',
                         'message': 'Parameter is not an integer',
-                        'apiVersion': '0.2.0'
+                        'apiVersion': 'unknown'
                     },
                 done);
         });
@@ -392,7 +392,7 @@ describe('Handles wrong numbers without crashing', function () {
                 .expect(422, {
                         'error': 'NOT_AN_INTEGER',
                         'message': 'Parameter is not an integer',
-                        'apiVersion': '0.2.0'
+                        'apiVersion': 'unknown'
                     },
                 done);
         });
