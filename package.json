@@ -1,7 +1,7 @@
 {
   "name": "roman-number-operations",
   "version": "1.0.0",
-  "description": "Do actions on roman numbers (convert number to roman notation).",
+  "description": "Do actions on roman numbers (convert decimal number to roman notation).",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,7 +11,7 @@
   "keywords": [
     "roman",
     "number",
-    "conversion"
+    "number-conversion"
   ],
   "author": "Tania Mathern",
   "license": "ISC",
