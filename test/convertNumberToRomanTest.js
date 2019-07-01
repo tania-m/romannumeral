@@ -1,6 +1,6 @@
 "use strict";
 
-const NumberToRomanConverter = require('./../romanNumberHandlers/convertNumberToRoman.js');
+const NumberToRomanConverter = require('./../romanNumberHandlers/numberToRomanConverter.js');
 const assert = require('assert');
 
 describe('Basic number to roman conversion (0-255)', function () {

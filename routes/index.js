@@ -3,7 +3,7 @@
 const apiVersion = process.env.API_VERSION || 'unknown';
 
 const routes = require('express').Router();
-const NumberToRomanConverter = require('./../romanNumberHandlers/convertNumberToRoman.js');
+const NumberToRomanConverter = require('./../romanNumberHandlers/numberToRomanConverter.js');
 
 /*
     Heartbeat route. Returns status code 200 if server is up and running.
@@ -13,14 +13,13 @@ routes.get('/heartbeat', (req, res) => {
 });
 
 /*
-    Version route. Returns the version of the API.
+    Version route. Returns the version of the API and status code 200 on success.
 */
 routes.get('/version', (req, res) => {
     res.status(200).json({version : apiVersion});
 });
 
-// there are no side-effects  and no state in the NumberToRomanConverter class.
-// so we can reuse it between requests, we don't need to reinstantiate it
+// there are no side-effects  and no state in the NumberToRomanConverter class. Reuse it between requests.
 const converter = new NumberToRomanConverter();
 
 /*
@@ -62,7 +61,8 @@ routes.get('/romannumeral', (req, res) => {
 // **Note**: Could add some memoization and or LRU caching.
 
 /*
-    Returns 404 for any URL/route not found on this server
+    Returns status code 404 and message "URL not found"
+    for any URL/route not found on this server
 */
 routes.get('*', function(req, res, next) {
     res.status(404).json({ message: 'URL not found', status: 404 });
