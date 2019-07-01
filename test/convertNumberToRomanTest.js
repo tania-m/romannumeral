@@ -1,7 +1,7 @@
 "use strict";
 
-const NumberToRomanConverter = require('./../romanNumberHandlers/numberToRomanConverter.js');
 const assert = require('assert');
+const NumberToRomanConverter = require('./../romanNumberHandlers/numberToRomanConverter.js');
 
 describe('Basic number to roman conversion (0-255)', function () {
     it('should convert 1 to I', function () {

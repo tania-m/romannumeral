@@ -21,11 +21,16 @@ class DecimalNumberToRomanMapBuilder{
             with additional bars on top depending on the size.
         */
         
+        // order of addition is important (we want largest to smallest)
+        // Map is ordered in the order of insertion so this holds.
         if(upperLimit >= 4000){ // add mapping for large numbers
             romanMap = this._buildNumberToRomanMapForLargeNumbers(romanMap);
             romanMap = this._buildNumberToRomanMapForMidsizeNumbers(romanMap);
         }
 
+        if(upperLimit > 255){
+            romanMap = this._buildNumberToRomanMapForThousands(romanMap);
+        }
         
         if(upperLimit >= 0){ // "base" mappings
             romanMap = this._buildNumberToRomanMapForSmallNumbers(romanMap);
@@ -89,12 +94,22 @@ class DecimalNumberToRomanMapBuilder{
      * @param {Map} decimalToRomanMap, a map to contain decimal integer to roman mapping
      * @returns {Map} containing the mappings
     */
-    static _buildNumberToRomanMapForSmallNumbers(decimalToRomanMap){
-
+    static _buildNumberToRomanMapForThousands(decimalToRomanMap){
         decimalToRomanMap.set(1000, 'M');
         decimalToRomanMap.set(900, 'CM');
         decimalToRomanMap.set(500, 'D');
         decimalToRomanMap.set(400, 'CD');
+
+        return decimalToRomanMap;
+    }
+
+    /** Builds the map from decimal to romans with key values for numbers from 1 to 1000.
+     *  Not all decimal numbers need a representation, a predefined set of values can help built a lot of others.
+     *  0 is excluded because roman numbers don't have a 0.      * 
+     * @param {Map} decimalToRomanMap, a map to contain decimal integer to roman mapping
+     * @returns {Map} containing the mappings
+    */
+    static _buildNumberToRomanMapForSmallNumbers(decimalToRomanMap){
         decimalToRomanMap.set(100, 'C');
         decimalToRomanMap.set(90, 'XC');
         decimalToRomanMap.set(50, 'L');

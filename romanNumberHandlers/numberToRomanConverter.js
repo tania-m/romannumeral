@@ -14,7 +14,7 @@ class NumberToRomanConverter {
      */
     constructor(){
         this.lowLimit = 0;
-        this.upperLimit = 2200000000;      
+        this.upperLimit = 2200000000;
 
         //const mapBuilder = new DecimalNumberToRomanMapBuilder(this.lowLimit, this.upperLimit);
         this._romanMap = DecimalNumberToRomanMapBuilder.buildNumberToRomanMap(this.upperLimit);
@@ -31,16 +31,15 @@ class NumberToRomanConverter {
             || !Number.isFinite(num)){ // in case this file is used as a library, be paranoid
             throw new ConversionError('Parameter is not an integer', 'NOT_AN_INTEGER');
         }
-    
+        
         if(num < this.lowLimit || num > this.upperLimit){
             throw new ConversionError('Parameter is not within range', 'OUT_OF_RANGE');
         }
-    
+        
         if(num === 0){ // roman numbers do not have a 0
             throw new ConversionError('Parameter value is 0, roman numbers do not have a 0', 'VALUE_IS_ZERO');
         }
-    
-
+        
         // now we are sure we have a number we can handle. Result will hold the converted value
         let result = '';
         for (let [decimal, roman] of this._romanMap) { // keys in a map are kept in order of addition
@@ -58,6 +57,3 @@ class NumberToRomanConverter {
 }
 
 module.exports = NumberToRomanConverter;
-
-//let demo = new NumberToRomanConverter();
-//console.log(demo.convertNumToRoman(4001));

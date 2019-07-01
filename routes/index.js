@@ -5,16 +5,18 @@ const apiVersion = process.env.API_VERSION || 'unknown';
 const routes = require('express').Router();
 const NumberToRomanConverter = require('./../romanNumberHandlers/numberToRomanConverter.js');
 
-/*
-    Heartbeat route. Returns status code 200 if server is up and running.
-*/
+/** 
+  * Heartbeat route. 
+  * @returns status code 200 if server is up and running (no content in body response).
+ */
 routes.get('/heartbeat', (req, res) => {
     res.status(200).end();
 });
 
-/*
-    Version route. Returns the version of the API and status code 200 on success.
-*/
+/** 
+  * Version route. Returns the version of the API and status code 200 on success.
+  * @returns {json} the API version number.
+  */
 routes.get('/version', (req, res) => {
     res.status(200).json({version : apiVersion});
 });
@@ -22,22 +24,21 @@ routes.get('/version', (req, res) => {
 // there are no side-effects  and no state in the NumberToRomanConverter class. Reuse it between requests.
 const converter = new NumberToRomanConverter();
 
-/*
-    Numeral to roman converter route.
-    Takes an integer (between 0 and 2200000000) as query parameter and converts it to a roman number.
-    Example route: http://localhost:8080/romannumeral?query={integer}
-    Success: returns status code 200 on success and the converted value;
-    Error: returns status code 422 with error code and error message.
+/** 
+  * Numeral to roman converter route.
+  * Takes an integer (between 0 and 2200000000) as query parameter and converts it to a roman number.
+  * Example route: http://localhost:8080/romannumeral?query={integer}
+  * @returns {json} On success: returns status code 200 on success and the converted value; on error: returns status code 422 with error code and error message.
 */
 routes.get('/romannumeral', (req, res) => {
-    let queryValue = req.query.query;
+    const queryValue = req.query.query;
 
     // convert user input in case the number was sent as string
-    // (sometimews browser or proxies do conversions)
-    let valueToConvert = parseInt(queryValue, 10);
+    // (sometimews browser or proxies do conversions to string)
+    const valueToConvert = parseInt(queryValue, 10);
 
-    try{
-        let result = converter.convertNumToRoman(valueToConvert);
+    try {
+        const result = converter.convertNumToRoman(valueToConvert);
         res.status(200).json({ roman: result });
     }
     catch (e) {
@@ -57,11 +58,12 @@ routes.get('/romannumeral', (req, res) => {
         }
     }
 });
-// **Note**: Could add some memoization and or LRU caching.
+// **Note**: Could add some memoization and/or LRU caching.
 
-/*
-    Returns status code 404 and message "URL not found"
-    for any URL/route not found on this server
+/** 
+  * Returns status code 404 and message "URL not found"
+  * for any URL/route not found on this server
+  * @returns {string} message 'URL not found' and status 404 if url is not found on this server
 */
 routes.get('*', function(req, res, next) {
     res.status(404).json({ message: 'URL not found', status: 404 });
