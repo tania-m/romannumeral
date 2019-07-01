@@ -335,6 +335,7 @@ describe('No crash with special strings', function () {
         "The quic\b\b\b\b\b\bk brown fo\u0007\u0007\u0007\u0007\u0007\u0007\u0007\u0007\u0007\u0007\u0007x... [Beeeep]"];
     
     var server;
+    let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
         server = require('./../server.js');
@@ -356,7 +357,7 @@ describe('No crash with special strings', function () {
                 .expect(422, {
                         'error': 'NOT_AN_INTEGER',
                         'message': 'Parameter is not an integer',
-                        'apiVersion': 'unknown'
+                        'apiVersion': apiVersion
                     },
                 done);
         });
@@ -373,6 +374,7 @@ describe('Handles wrong numbers without crashing', function () {
         "NaN"];
     
     var server;
+    let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
         server = require('./../server.js');
@@ -394,7 +396,7 @@ describe('Handles wrong numbers without crashing', function () {
                 .expect(422, {
                         'error': 'NOT_AN_INTEGER',
                         'message': 'Parameter is not an integer',
-                        'apiVersion': 'unknown'
+                        'apiVersion': apiVersion
                     },
                 done);
         });

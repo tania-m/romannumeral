@@ -4,6 +4,7 @@ const request = require('supertest');
 
 describe('Loading express', function () {
     let server;
+    let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
         server = require('./../server.js');
@@ -14,11 +15,10 @@ describe('Loading express', function () {
     });
 
     it('responds to /version', function testSlash(done) {
-        // tests will not set ENV variables, so version defaults to 'unknown'
         request(server)
             .get('/version')
             .expect(200, {
-                    'version': 'unknown'
+                    'version': apiVersion
                 },
             done);
     });

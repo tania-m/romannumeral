@@ -3,6 +3,13 @@
 const assert = require('assert');
 const DecimalNumberToRomanMapBuilder = require('./../romanNumberHandlers/decimalToRomanMapBuilder.js');
 
+describe('Integer to roman map structure', function () {
+    it('should be frozen', function () {
+            let romanMap = DecimalNumberToRomanMapBuilder.buildNumberToRomanMap(255);
+            assert.equal(Object.isFrozen(romanMap), true);
+        });
+});
+
 describe('Integer to roman map contains base key values (0-255)', function () {
     it('should contain 1 to I mapping', function () {
             let romanMap = DecimalNumberToRomanMapBuilder.buildNumberToRomanMap(255);

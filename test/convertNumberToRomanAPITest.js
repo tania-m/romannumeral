@@ -4,6 +4,7 @@ const request = require('supertest');
 
 describe('Responds to valid routes', function () {
     var server;
+    let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
         server = require('./../server.js');
@@ -112,6 +113,7 @@ describe('Responds to valid routes', function () {
 
 describe('Responds to non existing routes with 404', function () {
     var server;
+    let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
         server = require('./../server.js');
@@ -158,6 +160,7 @@ describe('Responds to non existing routes with 404', function () {
 
 describe('Responds to edge cases without error', function () {
     var server;
+    let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
         server = require('./../server.js');
@@ -212,7 +215,7 @@ describe('Responds to edge cases without error', function () {
             .expect(422, {
                 'error': 'NOT_AN_INTEGER',
                 'message': 'Parameter is not an integer',
-                'apiVersion': 'unknown'
+                'apiVersion': apiVersion
                 },
             done);
     });
@@ -226,7 +229,7 @@ describe('Responds to edge cases without error', function () {
             .expect(422, {
                 'error': 'NOT_AN_INTEGER',
                 'message': 'Parameter is not an integer',
-                'apiVersion': 'unknown'
+                'apiVersion': apiVersion
                 },
             done);
     });
@@ -234,6 +237,7 @@ describe('Responds to edge cases without error', function () {
 
 describe('Uncapitalizes parts of URL if needed', function () {
     var server;
+    let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
         server = require('./../server.js');
@@ -270,6 +274,7 @@ describe('Uncapitalizes parts of URL if needed', function () {
 
 describe('Responds to invalid routes with error', function () {
     var server;
+    let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
         server = require('./../server.js');
@@ -300,7 +305,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'NOT_AN_INTEGER',
                     'message': 'Parameter is not an integer',
-                    'apiVersion': 'unknown'
+                    'apiVersion': apiVersion
                 },
             done);
     });
@@ -314,7 +319,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'NOT_AN_INTEGER',
                     'message': 'Parameter is not an integer',
-                    'apiVersion': 'unknown'
+                    'apiVersion': apiVersion
                 },
             done);
     });
@@ -328,7 +333,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'NOT_AN_INTEGER',
                     'message': 'Parameter is not an integer',
-                    'apiVersion': 'unknown'
+                    'apiVersion': apiVersion
                 },
             done);
     });
@@ -342,7 +347,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'OUT_OF_RANGE',
                     'message': 'Parameter is not within range',
-                    'apiVersion': 'unknown'
+                    'apiVersion': apiVersion
                 },
             done);
     });
@@ -356,7 +361,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'OUT_OF_RANGE',
                     'message': 'Parameter is not within range',
-                    'apiVersion': 'unknown'
+                    'apiVersion': apiVersion
                 },
             done);
     });
@@ -370,7 +375,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'VALUE_IS_ZERO',
                     'message': 'Parameter value is 0, roman numbers do not have a 0',
-                    'apiVersion': 'unknown'
+                    'apiVersion': apiVersion
                 },
             done);
     });
@@ -384,7 +389,7 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'VALUE_IS_ZERO',
                     'message': 'Parameter value is 0, roman numbers do not have a 0',
-                    'apiVersion': 'unknown'
+                    'apiVersion': apiVersion
                 },
             done);
     });

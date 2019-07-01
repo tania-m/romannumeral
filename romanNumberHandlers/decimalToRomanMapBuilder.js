@@ -8,7 +8,7 @@
 class DecimalNumberToRomanMapBuilder{
     /**
      * This method builds the lookup table for key integer to roman values.
-     * @returns {string} lookup map
+     * @returns {string} lookup map, values are added from largest to smallest key values
      */
     static buildNumberToRomanMap(upperLimit){
         let romanMap = new Map(); 
@@ -28,7 +28,7 @@ class DecimalNumberToRomanMapBuilder{
             romanMap = this._buildNumberToRomanMapForMidsizeNumbers(romanMap);
         }
 
-        if(upperLimit > 255){
+        if(upperLimit >= 255){
             romanMap = this._buildNumberToRomanMapForThousands(romanMap);
         }
         
@@ -36,7 +36,7 @@ class DecimalNumberToRomanMapBuilder{
             romanMap = this._buildNumberToRomanMapForSmallNumbers(romanMap);
         }   
 
-        return romanMap;
+        return Object.freeze(romanMap);
     }
 
     /** Builds the map from decimal to romans for numbers with key values from 1000000 to 1000000000. 
@@ -88,7 +88,7 @@ class DecimalNumberToRomanMapBuilder{
         return decimalToRomanMap;
     }
 
-    /** Builds the map from decimal to romans with key values for numbers from 1 to 1000.
+    /** Builds the map from decimal to romans with key values for numbers from 400 to 1000.
      *  Not all decimal numbers need a representation, a predefined set of values can help built a lot of others.
      *  0 is excluded because roman numbers don't have a 0.      * 
      * @param {Map} decimalToRomanMap, a map to contain decimal integer to roman mapping
@@ -103,7 +103,7 @@ class DecimalNumberToRomanMapBuilder{
         return decimalToRomanMap;
     }
 
-    /** Builds the map from decimal to romans with key values for numbers from 1 to 1000.
+    /** Builds the map from decimal to romans with key values for numbers from 1 to 100.
      *  Not all decimal numbers need a representation, a predefined set of values can help built a lot of others.
      *  0 is excluded because roman numbers don't have a 0.      * 
      * @param {Map} decimalToRomanMap, a map to contain decimal integer to roman mapping

@@ -2,7 +2,7 @@
 
 const routes = require('express').Router();
 
-const apiVersion = process.env.API_VERSION || 'unknown';
+const apiVersion = process.env.API_VERSION || '1.0.0';
 
 /** 
   * Heartbeat route. 

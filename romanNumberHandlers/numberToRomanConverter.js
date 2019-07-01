@@ -28,7 +28,7 @@ class NumberToRomanConverter {
     convertNumToRoman(num){
         if(Number.isNaN(num) 
             || !Number.isInteger(num) 
-            || !Number.isFinite(num)){ // in case this file is used as a library, be paranoid
+            || !Number.isFinite(num)){
             throw new ConversionError('Parameter is not an integer', 'NOT_AN_INTEGER');
         }
         
@@ -42,13 +42,13 @@ class NumberToRomanConverter {
         
         // now we are sure we have a number we can handle. Result will hold the converted value
         let result = '';
-        for (let [decimal, roman] of this._romanMap) { // keys in a map are kept in order of addition
-            // so we have the key in the sorted order we need, aka from largest to smallest
+        for (let [decimal, roman] of this._romanMap) { 
+            // class contract of map builder: key values where added from largest to smallest
+            // we need this to hold to use that algorithm (otherwise we would need to sort values beforehand)
             
-            // roman number will be build from left to right
-            while (num % decimal < num) { // while we are still working on the same  roman character    
-                result = result + roman; // append the roman char to the result
-                num = num - decimal; // and reduce the num's value by what we just converted
+            while (num % decimal < num) { // roman number will be build from left to right
+                result = result + roman; 
+                num = num - decimal; 
             }
         }
     
