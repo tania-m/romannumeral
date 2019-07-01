@@ -7,22 +7,10 @@
  */
 class DecimalNumberToRomanMapBuilder{
     /**
-     * Default class constructor
-     */
-    constructor(lowLimit, upperLimit){
-        this._lowLimit = lowLimit;
-        this._upperLimit = upperLimit; 
-
-        this.romanMap = this.buildNumberToRomanMap(upperLimit);
-    }
-
-    //get RomanMap
-
-    /**
      * This method builds the lookup table for key integer to roman values.
      * @returns {string} lookup map
      */
-    buildNumberToRomanMap(upperLimit=this._upperLimit){
+    static buildNumberToRomanMap(upperLimit){
         let romanMap = new Map(); 
         /* 
             **Note**: Here we have a limit in size, so the look-up table is good:
@@ -51,7 +39,7 @@ class DecimalNumberToRomanMapBuilder{
      * @param {Map} decimalToRomanMap, a map to contain decimal integer to roman mapping
      * @returns {Map} containing the additional mappings for large numbers
     */
-    _buildNumberToRomanMapForLargeNumbers(decimalToRomanMap){
+    static _buildNumberToRomanMapForLargeNumbers(decimalToRomanMap){
         decimalToRomanMap.set(1000000000, 'M\u0305\u0305');
 
         decimalToRomanMap.set(900000000, 'C\u0305\u0305M\u0305\u0305');
@@ -77,7 +65,7 @@ class DecimalNumberToRomanMapBuilder{
      * @param {Map} decimalToRomanMap, a map to contain decimal integer to roman mapping
      * @returns {Map} containing additional the mappings for midsize numbers
     */
-    _buildNumberToRomanMapForMidsizeNumbers(decimalToRomanMap){
+    static _buildNumberToRomanMapForMidsizeNumbers(decimalToRomanMap){
         decimalToRomanMap.set(900000, 'C\u0305M\u0305');
         decimalToRomanMap.set(500000, 'D\u0305');
         decimalToRomanMap.set(400000, 'C\u0305D\u0305');
@@ -101,7 +89,7 @@ class DecimalNumberToRomanMapBuilder{
      * @param {Map} decimalToRomanMap, a map to contain decimal integer to roman mapping
      * @returns {Map} containing the mappings
     */
-    _buildNumberToRomanMapForSmallNumbers(decimalToRomanMap){
+    static _buildNumberToRomanMapForSmallNumbers(decimalToRomanMap){
 
         decimalToRomanMap.set(1000, 'M');
         decimalToRomanMap.set(900, 'CM');

@@ -16,8 +16,8 @@ class NumberToRomanConverter {
         this.lowLimit = 0;
         this.upperLimit = 2200000000;      
 
-        const mapBuilder = new DecimalNumberToRomanMapBuilder(this.lowLimit, this.upperLimit);
-        this._romanMap = mapBuilder.buildNumberToRomanMap();
+        //const mapBuilder = new DecimalNumberToRomanMapBuilder(this.lowLimit, this.upperLimit);
+        this._romanMap = DecimalNumberToRomanMapBuilder.buildNumberToRomanMap(this.upperLimit);
     }
 
     /**

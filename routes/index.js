@@ -41,7 +41,6 @@ routes.get('/romannumeral', (req, res) => {
         res.status(200).json({ roman: result });
     }
     catch (e) {
-        // console.log(e);
         switch(e.code){
             case 'NOT_AN_INTEGER' :
             case 'OUT_OF_RANGE' : 
