@@ -34,4 +34,10 @@ describe('Loading express', function () {
             .get('/foo/bar')
             .expect(404, done);
     });
+
+    it('404 if direct root access', function testPath(done) {
+        request(server)
+            .get('/')
+            .expect(404, done);
+    });
 });
