@@ -91,7 +91,3 @@ definitions:
       apiVersion:
         type: "string"
         description: "api version"
-      status:
-        type: "integer"
-        description: "HTTP status code"
-  
