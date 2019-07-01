@@ -6,7 +6,7 @@ const routes = require('express').Router();
 const apiVersion = process.env.API_VERSION || '1.0.0';
 
 // there are no side-effects, no state in the NumberToRomanConverter class. Reuse it between requests.
-const converter = new NumberToRomanConverter();
+const converter = Object.freeze(new NumberToRomanConverter());
 
 /** 
   * Numeral to roman converter route.
@@ -19,7 +19,7 @@ routes.get('/romannumeral', (req, res) => {
 
     // convert user input in case the number was sent as string
     // (sometimews browser or proxies do conversions to string) 
-    let conversionRadix = 10;
+    const conversionRadix = 10;
     const valueToConvert = parseInt(queryValue, conversionRadix);
 
     try {
