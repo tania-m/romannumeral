@@ -37,7 +37,7 @@ Or to run a container based on that image in **foreground** with the server list
 
     docker run -p 8080:8080 localhost:romannumeral
 
-## Run directly ("barebone")
+## Run on your machine (no container)
 *Prerequisite: Needs NodeJS version 10.16.0 or higher installed.*
 
 You will need to **install the dependencies** first. From the root of the folder:
@@ -129,6 +129,12 @@ Files at root of the romannumeral API server project:
 At runtime, and additional folder "logs" is added to hold log files.
 
 ## Development methodology
+The development of this server is incremental: functionalities are added, improved and refactored over time in iterations. 
+The first focus was to get a base working version, then to extend and improve business functionalities and finally monitoring and deployment capabilities.
+
+All functionalities must be unit tested, especially those used to do the roman numeral conversion (since they are of critical value for this server). Also, integration tests need to be written for added routes and functionalities, to verify that the server is capable of responding to requests.
+
+To finish, routes need to be documented in the project's swagger file. Code should also be documented.
 
 ## Tests
 Tests are available in the **test folder**. 

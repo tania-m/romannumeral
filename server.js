@@ -45,7 +45,7 @@ app.use('/', routes);
 
 // graceful shutdown
 /**
- *  Gracefully shutdowns the server on SIGTERM or SIGINT kill signals.
+ *  Gracefully shuts down the server on SIGTERM or SIGINT kill signals.
 */
 function shutDown() {
     console.log('Received kill signal (SIGINT || SIGTERM), shutting down gracefully');
