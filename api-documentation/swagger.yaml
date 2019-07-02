@@ -91,3 +91,6 @@ definitions:
       apiVersion:
         type: "string"
         description: "api version"
+      details:
+        type: "object"
+        description: "details about the error/exception that occurred"

@@ -33,7 +33,13 @@ class NumberToRomanConverter {
         }
         
         if(num < this.lowLimit || num > this.upperLimit){
-            throw new ConversionError('Parameter is not within range', 'OUT_OF_RANGE');
+            throw new ConversionError('Parameter is not within range', 
+                                        'OUT_OF_RANGE', 
+                                        {
+                                            lowerLimit: this.lowLimit, 
+                                            upperLimit: this.upperLimit
+                                        }
+                                    );
         }
         
         if(num === 0){ // roman numbers do not have a 0

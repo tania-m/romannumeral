@@ -347,7 +347,8 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'OUT_OF_RANGE',
                     'message': 'Parameter is not within range',
-                    'apiVersion': apiVersion
+                    'apiVersion': apiVersion,
+                    'details': { lowerLimit: 0, upperLimit: 2200000000 }
                 },
             done);
     });
@@ -361,7 +362,8 @@ describe('Responds to invalid routes with error', function () {
             .expect(422, {
                     'error': 'OUT_OF_RANGE',
                     'message': 'Parameter is not within range',
-                    'apiVersion': apiVersion
+                    'apiVersion': apiVersion,
+                    'details': { lowerLimit: 0, upperLimit: 2200000000 }
                 },
             done);
     });

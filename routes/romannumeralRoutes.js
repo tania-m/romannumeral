@@ -28,8 +28,13 @@ routes.get('/romannumeral', (req, res) => {
     }
     catch (e) {
         switch(e.code){
+            case 'OUT_OF_RANGE' : {
+                res.status(422).json({ error: e.code, 
+                                        message: e.message,
+                                        apiVersion: apiVersion,
+                                        details: e.details});
+            }
             case 'NOT_AN_INTEGER' :
-            case 'OUT_OF_RANGE' : 
             case 'VALUE_IS_ZERO' : {
                 res.status(422).json({ error: e.code, 
                                         message: e.message,

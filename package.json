@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "test": "mocha test",
-    "docker-build": "docker build . -t local:romannumeral"
+    "docker-build": "docker build . -t local:romannumeral",
+    "docker-build-run": "docker-compose up -d"
   },
   "keywords": [
     "roman",
