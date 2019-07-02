@@ -6,17 +6,13 @@ const express = require('express'),
     hpp = require('hpp'),
     slowDown = require('express-slow-down'),
     toobusy = require('node-toobusy'),
-    winston = require('winston');
+    morgan = require('morgan'),
+    winston = require('./monitoring/logging.js');
 
-const routes = require('./routes');
-
-// configure env and server
-const config = require('./config.js');
-
-const isRelease = process.env.NODE_ENV === 'production';
+const routes = require('./routes'),
+    config = require('./config.js');
 
 const app = express();
-
 
 // middlewares -------------------------------------------------------------
 app.use(cors()); // in case there are (legitimate) requests coming from another domain
@@ -29,7 +25,7 @@ const speedLimiter = slowDown({
     delayAfter: 500, // allow 100 requests per 15 minutes, then...
     delayMs: 250, // begin adding 500ms of delay per request above 100
     maxDelayMs: 3000 // max delay
-});
+});  
 app.use(speedLimiter);
 
 // return 503 if the server is too busy
@@ -41,41 +37,15 @@ app.use(function(req, res, next) {
     }
 });
 
-if(!isRelease){ // add debug/tracing tools
-    app.use(require('morgan')('dev')); // verbose
-} else {
-    app.use(require('morgan')('common'));
-}
+app.use(morgan('combined', { stream: winston.stream })); // for log files
+app.use(morgan('common')); // for console
 // middlewares (end) --------------------------------------------------------
 
-// Logging into files -------------------------------------------------------
-const logger = winston.createLogger({
-    level: 'info',
-    format: winston.format.json(),
-    defaultMeta: { service: 'user-service' },
-    transports: [
-        new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
-        new winston.transports.File({ filename: 'logs/combined.log' })
-    ]
-});
-// Logging into files (end) -------------------------------------------------
-
-// Use routes
 app.use('/', routes);
 
-// Handle shutdown signals
-process.on('SIGTERM', shutDown);
-process.on('SIGINT', shutDown);
-
-// fallback to default server settings if port is not defined
-const server = app.listen( process.env.PORT || 8080, function(){
-    console.log('Listening on port ' + server.address().port);
-});
-
 // graceful shutdown
-/*
-    Gracefully shutdowns the server on SIGTERM or SIGINT kill signals.
-    Tries to properly close server/connections before shutting the server down.
+/**
+ *  Gracefully shutdowns the server on SIGTERM or SIGINT kill signals.
 */
 function shutDown() {
     console.log('Received kill signal (SIGINT || SIGTERM), shutting down gracefully');
@@ -89,5 +59,13 @@ function shutDown() {
         process.exit(1);
     }, 10000);
 }
+
+process.on('SIGTERM', shutDown);
+process.on('SIGINT', shutDown);
+
+// Server - fallback to default server settings if port is not defined
+const server = app.listen( process.env.PORT || 8080, function(){
+    console.log('Listening on port ' + server.address().port);
+});
 
 module.exports = server;
