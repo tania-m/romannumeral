@@ -1,7 +1,6 @@
 "use strict";
 
 const request = require('supertest');
-const assert = require('assert');
 
 describe('Loading express', function () {
     let server;

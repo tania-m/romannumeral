@@ -1,7 +1,7 @@
 "use strict";
 
-const assert = require('assert');
-const DecimalNumberToRomanMapBuilder = require('./../romanNumberHandlers/decimalToRomanMapBuilder.js');
+const assert = require('assert'),
+    DecimalNumberToRomanMapBuilder = require('./../romanNumberHandlers/decimalToRomanMapBuilder.js');
 
 describe('Integer to roman map structure', function () {
     it('should be frozen', function () {
