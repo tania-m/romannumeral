@@ -1,7 +1,9 @@
 "use strict";
 
 // About roman numerals: https://www.mathsisfun.com/roman-numerals.html
-// For large roman numerals: http://roman-numerals.20m.com/
+
+// For large roman numerals: http://roman-numerals.20m.com/ 
+//  => \u0305 is the UTF-8 character to put a bar on letters
 
 /** This class contains the map needed to convert decimal integers to roman numbers (values between 0 and 2200000000).
  */

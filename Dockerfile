@@ -10,10 +10,10 @@ RUN npm i && npm install -g mocha && mocha test
 
 
 
-# Release/Production version container ------------------------
+# Release/Production version build ----------------------------
 FROM node:10.16.0-alpine
 
-# ENV variables in DOckerfile overwrite those in settings.env
+# ENV variables in Dockerfile overwrite those in settings.env
 ENV API_VERSION=1.0.0
 ENV NODE_ENV production
 

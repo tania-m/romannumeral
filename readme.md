@@ -43,7 +43,7 @@ Or to run a container based on that image in **foreground** with the server list
 You will need to **install the dependencies** first. From the root of the folder:
 
  - For usage in a dev/test environment: `npm i` 
- - For production use: `npm i --production`
+ - For production use: `npm i --production --only=production`
 
 Then, from the root of the project, **run**:    `npm start`
 
@@ -54,10 +54,10 @@ Then, from the root of the project, **run**:    `npm start`
 #### Conversion to roman values
 The route http://host/romannumeral?query={integer}.
 Example when running on localhost: http://localhosthost/romannumeral?query=50
-This route takes a decimal integer as parameter. If the query parameter is within convertible ranges, the server responds with **HTTP status code 200 and a json object** containing the roman number equivalent:
+This route takes a decimal integer as parameter. If the query parameter is within convertible ranges, the server responds with **HTTP status code 200 and a json object** containing the roman number equivalent (value is in UTF-8 for large numbers):
 
     { "roman" : "your_converted_value"}
-    
+
 *Note: Setting query parameter to 0 will return an error, since there is no 0 in the roman counting system. The subsequent handling of that case is left to the entity that made the request to the server.*
 
 #### Error cases
