@@ -47,6 +47,14 @@ You will need to **install the dependencies** first. From the root of the folder
 
 Then, from the root of this project, **run**:    `npm start`
 
+## Development methodology
+The development of this server is incremental: functionalities are added, improved and refactored over time in iterations. This is very similar to the Scrum Agile methodology.
+The first focus was to get a base working version (integer to roman conversion) to get a minimum viable product. Then, extend and improve business functionalities, finally monitoring and deployment capabilities.
+
+All functionalities must be unit tested, especially those used to do the roman numeral conversion (since they are of critical value for this server). Also, integration tests need to be written for added routes and functionalities, to verify that the server is capable of responding to requests as expected.
+
+To finish, API routes need to be documented in the project's swagger file. Code should also be documented.
+
 ## Routes
 *Detailed route documentation can be found in the swagger/openapi file in the project folder api-documentation.* 
 
@@ -128,13 +136,8 @@ Files at root of the romannumeral API server project:
 
 At runtime, and additional folder "logs" is added to hold log files.
 
-## Development methodology
-The development of this server is incremental: functionalities are added, improved and refactored over time in iterations. This is very similar to the Scrum Agile methodology.
-The first focus was to get a base working version (integer to roman conversion) to get a minimum viable product. Then, extend and improve business functionalities, finally monitoring and deployment capabilities.
-
-All functionalities must be unit tested, especially those used to do the roman numeral conversion (since they are of critical value for this server). Also, integration tests need to be written for added routes and functionalities, to verify that the server is capable of responding to requests as expected.
-
-To finish, API routes need to be documented in the project's swagger file. Code should also be documented.
+## Production usage
+Currently, only HTTP is supported out of the box. For HTTPS, please use a prxy (like [NGINX](https://www.nginx.com/)) in front of this server.
 
 ## Tests
 Tests are available in the **test folder**. 
@@ -161,10 +164,10 @@ The server uses some middlewares for an enhanced experience:
  - [helmet](https://www.npmjs.com/package/helmet), to add security by setting some HTTP headers,
  - [hpp](https://www.npmjs.com/package/hpp), to avoid query parameter pollution.
 
-To read environment files and configure the server using them, there is a dependency to [dotenv](https://www.npmjs.com/package/dotenv).
+To read environment files and configure the server to use them, there is a dependency to [dotenv](https://www.npmjs.com/package/dotenv).
 
 Finally, for logging the server uses the express [morgan](https://www.npmjs.com/package/morgan) middleware for console logging and [winston](https://www.npmjs.com/package/winston) to save logs into files.
 
 ### First level dev-dependencies
-The project has test dependencies, libraries required for testing: [chai](https://www.npmjs.com/package/chai), [mocha](https://www.npmjs.com/package/mocha) and [supertest](https://www.npmjs.com/package/supertest).
+THis project has test dependencies: [chai](https://www.npmjs.com/package/chai), [mocha](https://www.npmjs.com/package/mocha) and [supertest](https://www.npmjs.com/package/supertest).
 Also, a lot of test cases where inspired by the [big-list-of-naughty-strings](https://github.com/minimaxir/big-list-of-naughty-strings).
