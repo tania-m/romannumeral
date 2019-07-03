@@ -4,14 +4,14 @@
 Provide an API server that can convert decimal integers (e.g. 10, 100, 200, ...) into the roman numeral equivalent. The server offers a route of type http://localhost:8080/romannumeral?query=10 to do so.
 
 ## References
-Two resources helped during development of that server. They describe the rules the server will follow for conversions to roman numbers:
+Two resources are important for working on the development of that server. They describe the rules the server will follow for conversions to roman numbers:
 
  - For roman numerals: [Roman Numerals on mathisfun](https://www.mathsisfun.com/roman-numerals.html)
  - For syntax additions to handle large roman numbers: [Roman Numerals for large numbers](http://roman-numerals.20m.com/)
 
 ## Quickstart: Build and run
 *Prerequisite: Needs to have Docker installed.*
-You can start using the server immediately by running the docker-compose file at the root of the project. The server will be listening on port 8080.
+You can start using the server immediately by running the docker-compose file at the root of the project. The server will be listening on port 8080 (per default).
 
 From the root of the project, run:
 
@@ -60,8 +60,10 @@ To finish, API routes need to be documented in the project's swagger file. Code 
 
 ### Number to roman conversion
 #### Conversion to roman values
-The route http://host/romannumeral?query={integer}.
+The route is of the general form http://host/romannumeral?query={integer}, where query contains the integer to convert.
+
 Example when running on localhost: http://localhosthost/romannumeral?query=50
+
 This route takes a decimal integer as parameter. If the query parameter is within convertible ranges, the server responds with **HTTP status code 200 and a json object** containing the roman number equivalent (value is in UTF-8 for large numbers):
 
     { "roman" : "your_converted_value"}
@@ -70,7 +72,7 @@ This route takes a decimal integer as parameter. If the query parameter is withi
 
 #### Error cases
 ##### Query value is 0
-Setting query parameter to 0 will return an error, since there is no 0 in the roman counting system. The subsequent handling of that case is left to the entity that made the request to the server.
+Setting query parameter to 0 will return an error, since there is no 0 in the roman counting system. The subsequent handling of that case is left to the caller. Here the API signals that 0 is not a roman numeral value.
 
 The server will return a **HTTP status code 422 and a json object** describing the error:
 
