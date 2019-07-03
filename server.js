@@ -12,6 +12,7 @@ const express = require('express'),
 const config = require('./config.js'),
         routes = require('./routes');
 
+const cleanShutdownLimit = 10000;
 const app = express();
 
 // middlewares -------------------------------------------------------------
@@ -44,9 +45,8 @@ app.use(morgan('common')); // for console
 app.use('/', routes);
 
 // Server - fallback to default server settings if port is not defined
-console.log(process.env.PORT)
 const server = app.listen( process.env.PORT || 8080, function(){
-    console.log('Listening on port ' + server.address().port);
+    console.log('Romannumeral server listening on port ' + server.address().port);
 });
 
 // graceful shutdown
@@ -63,7 +63,7 @@ function shutDown() {
     setTimeout(() => {c
         console.error('Could not close remaining connections in time, forcing server shutdown');
         process.exit(1);
-    }, 10000);
+    }, cleanShutdownLimit); 
 }
 
 process.on('SIGTERM', shutDown);
