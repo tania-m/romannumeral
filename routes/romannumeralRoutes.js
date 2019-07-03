@@ -27,18 +27,19 @@ routes.get('/romannumeral', (req, res) => {
         res.status(200).json({ roman: result });
     }
     catch (e) {
+        let errorObject = {};
         switch(e.code){
-            case 'OUT_OF_RANGE' : {
-                res.status(422).json({ error: e.code, 
-                                        message: e.message,
-                                        apiVersion: apiVersion,
-                                        details: e.details});
-            }
+            case 'OUT_OF_RANGE' :
             case 'NOT_AN_INTEGER' :
             case 'VALUE_IS_ZERO' : {
-                res.status(422).json({ error: e.code, 
+                errorObject = { error: e.code, 
                                         message: e.message,
-                                        apiVersion: apiVersion });
+                                        apiVersion: apiVersion
+                                };
+                if(e.details !== null){
+                    errorObject.details = e.details;
+                }
+                res.status(422).json(errorObject);
                 break;
             }
             default: {

@@ -329,10 +329,7 @@ describe('No crash with special strings', function () {
         "http://www.cum.qc.ca/",
         "evaluate",
         "mocha",
-        "eval(10)",
-        "Roses are \u001b[0;31mred\u001b[0m, violets are \u001b[0;34mblue. Hope you enjoy terminal hue",
-        "But now...\u001b[20Cfor my greatest trick...\u001b[8m",
-        "The quic\b\b\b\b\b\bk brown fo\u0007\u0007\u0007\u0007\u0007\u0007\u0007\u0007\u0007\u0007\u0007x... [Beeeep]"];
+        "eval(10)"];
     
     var server;
     let apiVersion = process.env.API_VERSION || '1.0.0';
