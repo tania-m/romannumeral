@@ -67,9 +67,9 @@ Setting query parameter to 0 will return an error, since there is no 0 in the ro
 The server will return a **HTTP status code 422 and a json object** describing the error:
 
     { 
-	    error:  "VALUE_IS_ZERO",
-	    message:  "Parameter value is 0, roman numbers do not have a 0",
-	    apiVersion:  "apiVersion" 
+	    "error":  "VALUE_IS_ZERO",
+	    "message":  "Parameter value is 0, roman numbers do not have a 0",
+	    "apiVersion":  "apiVersion" 
     }
 
 ##### Query value is out of range
@@ -95,7 +95,7 @@ The server will return a **HTTP status code 422 and a json object** describing t
 
 ### Server monitoring
 #### Server is busy
-In case the server is busy and cannot respond to more request, it will start sending back **HTTP status codes 503**.
+In case the server is busy and cannot respond to more requests, it will start sending back **HTTP status code 503**.
 
 #### Heartbeat
 If the server is up and running, a request sent to http://your_host/heartbeat will make the server respond with a **HTTP status code 200**. There is **no response body**.
@@ -104,7 +104,7 @@ No response/timeout means that the server is not running or is in a crashed stat
 #### Version
 If the server is up and running, a request sent to http://your_host/version will make the server respond with a **status 200 and a json object containing the version of the romannumeral API** currently used: 
 
-    { apiVersion:  apiVersion }
+    { "apiVersion":  apiVersion }
 
 ### URL not found
 If a request is made to the server using an unknown route, **HTTP status code 404** is returned.
@@ -129,12 +129,12 @@ Files at root of the romannumeral API server project:
 At runtime, and additional folder "logs" is added to hold log files.
 
 ## Development methodology
-The development of this server is incremental: functionalities are added, improved and refactored over time in iterations. 
-The first focus was to get a base working version, then to extend and improve business functionalities and finally monitoring and deployment capabilities.
+The development of this server is incremental: functionalities are added, improved and refactored over time in iterations. This is very similar to the Scrum Agile methodology.
+The first focus was to get a base working version (integer to roman conversion) to get a minimum viable product. Then, extend and improve business functionalities, finally monitoring and deployment capabilities.
 
-All functionalities must be unit tested, especially those used to do the roman numeral conversion (since they are of critical value for this server). Also, integration tests need to be written for added routes and functionalities, to verify that the server is capable of responding to requests.
+All functionalities must be unit tested, especially those used to do the roman numeral conversion (since they are of critical value for this server). Also, integration tests need to be written for added routes and functionalities, to verify that the server is capable of responding to requests as expected.
 
-To finish, routes need to be documented in the project's swagger file. Code should also be documented.
+To finish, API routes need to be documented in the project's swagger file. Code should also be documented.
 
 ## Tests
 Tests are available in the **test folder**. 
