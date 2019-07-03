@@ -14,7 +14,7 @@ describe('Responds to valid routes', function () {
         server.close();
     });
 
-    it('responds to /romannumeral (query = 50)', function testSlash(done) {
+    it('responds to /romannumeral (query = 50)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 50 })
@@ -26,7 +26,7 @@ describe('Responds to valid routes', function () {
             done);
     });
 
-    it('responds to /romannumeral (query = 149)', function testSlash(done) {
+    it('responds to /romannumeral (query = 149)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 149 })
@@ -38,7 +38,7 @@ describe('Responds to valid routes', function () {
             done);
     });
 
-    it('responds to /romannumeral (query = 249)', function testSlash(done) {
+    it('responds to /romannumeral (query = 249)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 249 })
@@ -50,7 +50,7 @@ describe('Responds to valid routes', function () {
             done);
     });
 
-    it('responds to /romannumeral (query = 1606)', function testSlash(done) {
+    it('responds to /romannumeral (query = 1606)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 1606 })
@@ -62,7 +62,7 @@ describe('Responds to valid routes', function () {
             done);
     });
 
-    it('responds to /romannumeral (query = 3999)', function testSlash(done) {
+    it('responds to /romannumeral (query = 3999)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 3999 })
@@ -74,7 +74,7 @@ describe('Responds to valid routes', function () {
             done);
     });
 
-    it('responds to /romannumeral (query = 2200000000)', function testSlash(done) {
+    it('responds to /romannumeral (query = 2200000000)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 2200000000 })
@@ -86,7 +86,7 @@ describe('Responds to valid routes', function () {
             done);
     });
 
-    it('responds to /romannumeral (query = 400000000)', function testSlash(done) {
+    it('responds to /romannumeral (query = 400000000)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 400000000 })
@@ -98,7 +98,7 @@ describe('Responds to valid routes', function () {
             done);
     });
 
-    it('responds to /romannumeral (query = 1900400003)', function testSlash(done) {
+    it('responds to /romannumeral (query = 1900400003)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 1900400003 })
@@ -123,7 +123,7 @@ describe('Responds to non existing routes with 404', function () {
         server.close();
     });
 
-    it('responds to /foobar ', function testSlash(done) {
+    it('responds to /foobar ', function testRoute(done) {
         request(server)
             .get('/foobar')
             .set('Accept', 'application/json')
@@ -131,7 +131,7 @@ describe('Responds to non existing routes with 404', function () {
             .expect(404, done);
     });
 
-    it('responds to /foobarquery ', function testSlash(done) {
+    it('responds to /foobarquery ', function testRoute(done) {
         request(server)
             .get('/foobarquery')
             .query({ query: 1900400003 })
@@ -140,7 +140,7 @@ describe('Responds to non existing routes with 404', function () {
             .expect(404, done);
     });
 
-    it('responds to / ', function testSlash(done) { // route is not left visible
+    it('responds to / ', function testRoute(done) { // route is not left visible
         request(server)
             .get('/')
             .set('Accept', 'application/json')
@@ -148,7 +148,7 @@ describe('Responds to non existing routes with 404', function () {
             .expect(404, done);
     });
 
-    it('responds to / ', function testSlash(done) { // route is not left visible
+    it('responds to / ', function testRoute(done) { // route is not left visible
         request(server)
             .get('/')
             .query({ query: 1900400003 })
@@ -170,7 +170,7 @@ describe('Responds to edge cases without error', function () {
         server.close();
     });
 
-    it('Parameter sent as string, but still capable to return a response', function testSlash(done) {
+    it('Parameter sent as string, but still capable to return a response', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: '249' })
@@ -182,7 +182,7 @@ describe('Responds to edge cases without error', function () {
             done);
     });
 
-    it('Parameter sent as 0249, should be parsed to radix 10', function testSlash(done) {
+    it('Parameter sent as 0249, should be parsed to radix 10', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: '0249' })
@@ -194,7 +194,7 @@ describe('Responds to edge cases without error', function () {
             done);
     });
 
-    it('Parameter sent as 4/2, truncates the fraction to 4', function testSlash(done) {
+    it('Parameter sent as 4/2, truncates the fraction to 4', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: '4/2' })
@@ -206,7 +206,7 @@ describe('Responds to edge cases without error', function () {
             done);
     });
 
-    it('Parameter sent as string, ignore everything except first number', function testSlash(done) {
+    it('Parameter sent as string, ignore everything except first number', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: '"1;DROP TABLE users"' })
@@ -220,7 +220,7 @@ describe('Responds to edge cases without error', function () {
             done);
     });
 
-    it('Parameter sent as string, fail to process', function testSlash(done) {
+    it('Parameter sent as string, fail to process', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: '"1\'; DROP TABLE users-- 1"' })
@@ -247,7 +247,7 @@ describe('Uncapitalizes parts of URL if needed', function () {
         server.close();
     });
 
-    it('responds to /ROMANNUMERAL (query = 249)', function testSlash(done) {
+    it('responds to /ROMANNUMERAL (query = 249)', function testRoute(done) {
         request(server)
             .get('/ROMANNUMERAL')
             .query({ query: 249 })
@@ -259,7 +259,7 @@ describe('Uncapitalizes parts of URL if needed', function () {
             done);
     });
 
-    it('responds to /RoMaNnUmErAl (query = 249)', function testSlash(done) {
+    it('responds to /RoMaNnUmErAl (query = 249)', function testRoute(done) {
         request(server)
             .get('/ROMANNUMERAL')
             .query({ query: 249 })
@@ -284,7 +284,7 @@ describe('Responds to invalid routes with error', function () {
         server.close();
     });
 
-    it('HPP: Keeps only last parameter of the parameters with same name in query', function testSlash(done) {
+    it('HPP: Keeps only last parameter of the parameters with same name in query', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 104, query: 249 })
@@ -296,7 +296,7 @@ describe('Responds to invalid routes with error', function () {
             done);
     });
 
-    it('Responds with an error for empty parameter', function testSlash(done) {
+    it('Responds with an error for empty parameter', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: ' ' })
@@ -310,7 +310,7 @@ describe('Responds to invalid routes with error', function () {
             done);
     });
 
-    it('Responds with an error for empty parameter', function testSlash(done) {
+    it('Responds with an error for empty parameter', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: '[a-z]' })
@@ -324,7 +324,7 @@ describe('Responds to invalid routes with error', function () {
             done);
     });
 
-    it('Responds with an error for string parameter', function testSlash(done) {
+    it('Responds with an error for string parameter', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 'a-string' })
@@ -338,7 +338,7 @@ describe('Responds to invalid routes with error', function () {
             done);
     });
 
-    it('Responds with an error for value out of range', function testSlash(done) {
+    it('Responds with an error for value out of range', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 99999999999999 })
@@ -353,7 +353,7 @@ describe('Responds to invalid routes with error', function () {
             done);
     });
 
-    it('Responds with an error for value out of range', function testSlash(done) {
+    it('Responds with an error for value out of range', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: -1 })
@@ -368,7 +368,7 @@ describe('Responds to invalid routes with error', function () {
             done);
     });
 
-    it('Responds with an error for 0 (no 0 in roman notation)', function testSlash(done) {
+    it('Responds with an error for 0 (no 0 in roman notation)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 0 })
@@ -382,7 +382,7 @@ describe('Responds to invalid routes with error', function () {
             done);
     });
 
-    it('Responds with an error for 0 as string (no 0 in roman notation)', function testSlash(done) {
+    it('Responds with an error for 0 as string (no 0 in roman notation)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: '0' })
