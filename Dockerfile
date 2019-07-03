@@ -21,6 +21,9 @@ RUN mkdir -p app
 WORKDIR app
 COPY . .
 
+RUN addgroup -S romannumeralgroup && adduser -S romannumeral -G romannumeralgroup
+USER romannumeral
+
 RUN npm i --only=production
 
 ENV PORT 8080
