@@ -30,11 +30,11 @@ class DecimalNumberToRomanMapBuilder{
             romanMap = this._buildNumberToRomanMapForMidsizeNumbers(romanMap);
         }
 
-        if(upperLimit >= 255){
+        if(upperLimit > 255){
             romanMap = this._buildNumberToRomanMapForThousands(romanMap);
         }
         
-        if(upperLimit >= 0){ // "base" mappings
+        if(upperLimit > 0){ // "base" mappings
             romanMap = this._buildNumberToRomanMapForSmallNumbers(romanMap);
         }   
 

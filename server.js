@@ -9,8 +9,8 @@ const express = require('express'),
     morgan = require('morgan'),
     winston = require('./monitoring/logging.js');
 
-const routes = require('./routes'),
-    config = require('./config.js');
+const config = require('./config.js'),
+        routes = require('./routes');
 
 const app = express();
 

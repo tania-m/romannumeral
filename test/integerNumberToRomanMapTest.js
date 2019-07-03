@@ -64,6 +64,11 @@ describe('Integer to roman map contains base key values (0-255)', function () {
             assert.equal(romanMap.has(100), true);
             assert.equal(romanMap.get(100), 'C');
         });
+
+    it('should not contain the next key larger than 255', function () {
+            let romanMap = DecimalNumberToRomanMapBuilder.buildNumberToRomanMap(255);
+            assert.equal(romanMap.has(400), false);
+        });
 });
 
 describe('Integer to roman map contains key values for thousands', function () {
@@ -143,6 +148,11 @@ describe('Integer to roman map contains key values for thousands', function () {
             let romanMap = DecimalNumberToRomanMapBuilder.buildNumberToRomanMap(3999);
             assert.equal(romanMap.has(1000), true);
             assert.equal(romanMap.get(1000), 'M');
+        });
+
+    it('should not contain the next key larger than 3999', function () {
+            let romanMap = DecimalNumberToRomanMapBuilder.buildNumberToRomanMap(3999);
+            assert.equal(romanMap.has(4000), false);
         });
 });
 
@@ -513,5 +523,10 @@ describe('Integer to roman map contains key values for millions and billions', f
             let romanMap = DecimalNumberToRomanMapBuilder.buildNumberToRomanMap(2200000000);
             assert.equal(romanMap.has(1000000000), true);
             assert.equal(romanMap.get(1000000000), 'M\u0305\u0305');
+        });
+
+    it('should not contain something larger than 2200000000', function () {
+            let romanMap = DecimalNumberToRomanMapBuilder.buildNumberToRomanMap(2200000000);
+            assert.equal(romanMap.size, 37);
         });
 });
