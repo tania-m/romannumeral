@@ -171,3 +171,9 @@ Finally, for logging the server uses the express [morgan](https://www.npmjs.com/
 ### First level dev-dependencies
 THis project has test dependencies: [chai](https://www.npmjs.com/package/chai), [mocha](https://www.npmjs.com/package/mocha) and [supertest](https://www.npmjs.com/package/supertest).
 Also, a lot of test cases where inspired by the [big-list-of-naughty-strings](https://github.com/minimaxir/big-list-of-naughty-strings).
+
+## Next steps
+Next steps would be to:
+- add support to send metrics to [Prometheus](https://prometheus.io/),
+- automate test run when a pull request is opened,
+- depending on usage and usage feedback, add scaling using Node's clustering capabilities.
