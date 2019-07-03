@@ -46,7 +46,7 @@ app.use('/', routes);
 
 // Server - fallback to default server settings if port is not defined
 const server = app.listen( process.env.PORT || 8080, function(){
-    console.log('ROmannumeral server listening on port ' + server.address().port);
+    console.log('Romannumeral server listening on port ' + server.address().port);
 });
 
 // graceful shutdown

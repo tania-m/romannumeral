@@ -176,4 +176,5 @@ Also, a lot of test cases where inspired by the [big-list-of-naughty-strings](ht
 Next steps would be to:
 - add support to send metrics to [Prometheus](https://prometheus.io/),
 - automate test run when a pull request is opened,
+- if some numbers are more transformed than other, add LRU caching,
 - depending on usage and usage feedback, add scaling using Node's clustering capabilities.

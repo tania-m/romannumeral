@@ -12,7 +12,7 @@ const converter = Object.freeze(new NumberToRomanConverter());
   * Numeral to roman converter route.
   * Takes an integer (between 0 and 2200000000) as query parameter and converts it to a roman number.
   * Example route: http://localhost:8080/romannumeral?query={integer}
-  * @returns {json} On success: returns status code 200 on success and the converted value; on error: returns status code 422 with error code and error message.
+  * @returns {json} returns status code 200 on success and the converted value; on error: returns status code 422 with error code and error message.
 */
 routes.get('/romannumeral', (req, res) => {
     const queryValue = req.query.query;
