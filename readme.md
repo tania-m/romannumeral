@@ -4,10 +4,10 @@
 Provide an API server that can convert decimal integers (e.g. 10, 100, 200, ...) into the roman numeral equivalent. The server offers a route of type http://localhost:8080/romannumeral?query=10 to do so.
 
 ## References
-Two resources help during development of that server. They describe the rules the server will follow for conversions to roman numbers:
+Two resources helped during development of that server. They describe the rules the server will follow for conversions to roman numbers:
 
- - About roman numerals: [Roman Numerals on mathisfun](https://www.mathsisfun.com/roman-numerals.html)
- - Additions to handle large roman numbers: [Roman Numerals for large numbers](http://roman-numerals.20m.com/)
+ - For roman numerals: [Roman Numerals on mathisfun](https://www.mathsisfun.com/roman-numerals.html)
+ - For syntax additions to handle large roman numbers: [Roman Numerals for large numbers](http://roman-numerals.20m.com/)
 
 ## Quickstart: Build and run
 *Prerequisite: Needs to have Docker installed.*
@@ -45,7 +45,7 @@ You will need to **install the dependencies** first. From the root of the folder
  - For usage in a dev/test environment: `npm i` 
  - For production use: `npm i --production --only=production`
 
-Then, from the root of the project, **run**:    `npm start`
+Then, from the root of this project, **run**:    `npm start`
 
 ## Routes
 *Detailed route documentation can be found in the swagger/openapi file in the project folder api-documentation.* 
@@ -146,7 +146,8 @@ To **run all the tests**, from the root of the project, run:
 
     npm test
     
-Tests are also automatically run during the build of a Docker image for this project.
+*Troubleshooting: You may need to install mocha globally to run the tests (npm i mocha -g).*
+Tests also run automatically during the build of a Docker image for this project.
 
 ## Dependencies
 ### First level dependencies
