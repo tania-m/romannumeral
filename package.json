@@ -20,6 +20,10 @@
     "url": "git+https://github.com/tania-m/romannumeral"
   },
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tania-m/romannumeral/issues"
+  },
+  "homepage": "https://github.com/tania-m/romannumeral#readme",
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
