@@ -164,10 +164,10 @@ The server uses some middlewares for an enhanced experience:
  - [helmet](https://www.npmjs.com/package/helmet), to add security by setting some HTTP headers,
  - [hpp](https://www.npmjs.com/package/hpp), to avoid query parameter pollution.
 
-To read environment files and configure the server using them, there is a dependency to [dotenv](https://www.npmjs.com/package/dotenv).
+To read environment files and configure the server to use them, there is a dependency to [dotenv](https://www.npmjs.com/package/dotenv).
 
 Finally, for logging the server uses the express [morgan](https://www.npmjs.com/package/morgan) middleware for console logging and [winston](https://www.npmjs.com/package/winston) to save logs into files.
 
 ### First level dev-dependencies
-The project has test dependencies, libraries required for testing: [chai](https://www.npmjs.com/package/chai), [mocha](https://www.npmjs.com/package/mocha) and [supertest](https://www.npmjs.com/package/supertest).
+THis project has test dependencies: [chai](https://www.npmjs.com/package/chai), [mocha](https://www.npmjs.com/package/mocha) and [supertest](https://www.npmjs.com/package/supertest).
 Also, a lot of test cases where inspired by the [big-list-of-naughty-strings](https://github.com/minimaxir/big-list-of-naughty-strings).
