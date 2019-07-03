@@ -31,7 +31,7 @@ To do so, from the root of the project,  you **first need to build** the Docker 
 
 Ten, to run a container based on that image in **background** with the server listening on port 8080:
 
-    docker run -d 8080:8080 localhost:romannumeral
+    docker run -d -p 8080:8080 localhost:romannumeral
 
 Or to run a container based on that image in **foreground** with the server listening on port 8080:
 
