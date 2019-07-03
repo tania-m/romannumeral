@@ -137,7 +137,7 @@ Files at root of the romannumeral API server project:
 At runtime, and additional folder "logs" is added to hold log files.
 
 ## Production usage
-Currently, only HTTP is supported out of the box. For HTTPS, please use a prxy (like [NGINX](https://www.nginx.com/)) in front of this server.
+Currently, only HTTP is supported out of the box. For HTTPS, please use a proxy (like [NGINX](https://www.nginx.com/)) in front of this server.
 
 ## Tests
 Tests are available in the **test folder**. 

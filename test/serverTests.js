@@ -14,7 +14,7 @@ describe('Loading express', function () {
         server.close();
     });
 
-    it('responds to /version', function testSlash(done) {
+    it('responds to /version', function testPath(done) {
         request(server)
             .get('/version')
             .expect(200, {
@@ -23,7 +23,7 @@ describe('Loading express', function () {
             done);
     });
 
-    it('responds to /heartbeat', function testSlash(done) {
+    it('responds to /heartbeat', function testPath(done) {
         request(server)
             .get('/heartbeat')
             .expect(200, done);
