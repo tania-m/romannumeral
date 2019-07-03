@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "install-and-test": "npm i && mocha test",
     "test": "mocha test",
     "docker-build": "docker build . -t local:romannumeral",
     "docker-build-run": "docker-compose up -d"
@@ -19,7 +20,17 @@
     "type": "git",
     "url": "git+https://github.com/tania-m/romannumeral"
   },
-  "license": "ISC",
+  "license": "Apache 2",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/tania-m/romannumeral/issues"
+  },
+  "homepage": "https://github.com/tania-m/romannumeral#readme",
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
