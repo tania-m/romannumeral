@@ -43,6 +43,12 @@ app.use(morgan('common')); // for console
 
 app.use('/', routes);
 
+// Server - fallback to default server settings if port is not defined
+console.log(process.env.PORT)
+const server = app.listen( process.env.PORT || 8080, function(){
+    console.log('Listening on port ' + server.address().port);
+});
+
 // graceful shutdown
 /**
  *  Gracefully shuts down the server on SIGTERM or SIGINT kill signals.
@@ -62,11 +68,5 @@ function shutDown() {
 
 process.on('SIGTERM', shutDown);
 process.on('SIGINT', shutDown);
-
-// Server - fallback to default server settings if port is not defined
-console.log(process.env.PORT)
-const server = app.listen( process.env.PORT || 8080, function(){
-    console.log('Listening on port ' + server.address().port);
-});
 
 module.exports = server;
