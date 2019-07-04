@@ -4,7 +4,7 @@
 // For large roman numerals: http://roman-numerals.20m.com/
 
 const DecimalNumberToRomanMapBuilder = require('./decimalToRomanMapBuilder.js');
-const ConversionErrorTypeEnum = require('../romanNumberHandlers/conversionErrorCodeEnum.js');
+const ConversionErrorTypeEnum = require('./conversionErrorCodeEnum.js');
 const ConversionError = require('./conversionError.js');
 
 /** This class is a converter for integers to roman numerals (values between 0 and 2200000000).
