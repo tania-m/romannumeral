@@ -1,12 +1,17 @@
 "use strict";
 
 const NumberToRomanConverter = require('./../romanNumberHandlers/numberToRomanConverter.js');
+const ConverterUpperLimits = require('./../romanNumberHandlers/conversionUpperLimits.js');
 const routes = require('express').Router();
 
 const apiVersion = process.env.API_VERSION || '1.0.0';
 
-// there are no side-effects, no state in the NumberToRomanConverter class. Reuse it between requests.
-const converter = Object.freeze(new NumberToRomanConverter());
+/**
+ * Convert a number to roman converted for values between 0 and 2200000000. 
+ * There are no side-effects, no state in the NumberToRomanConverter class. Reuse it between requests.
+ * Once created, this object is read-only.
+*/
+const converter = Object.freeze(new NumberToRomanConverter(ConverterUpperLimits.large.limit));
 
 /** 
   * Numeral to roman converter route.
