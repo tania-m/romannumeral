@@ -4,6 +4,7 @@
 // For large roman numerals: http://roman-numerals.20m.com/
 
 const DecimalNumberToRomanMapBuilder = require('./decimalToRomanMapBuilder.js');
+const ConversionErrorTypeEnum = require('./conversionErrorCodeEnum.js');
 const ConversionError = require('./conversionError.js');
 
 /** This class is a converter for integers to roman numerals (values between 0 and 2200000000).
@@ -29,12 +30,13 @@ class NumberToRomanConverter {
         if(Number.isNaN(num) 
             || !Number.isInteger(num) 
             || !Number.isFinite(num)){
-            throw new ConversionError('Parameter is not an integer', 'NOT_AN_INTEGER');
+            throw new ConversionError('Parameter is not an integer', 
+                                        ConversionErrorTypeEnum.NOT_AN_INTEGER);
         }
         
         if(num < this._lowLimit || num > this._upperLimit){
             throw new ConversionError('Parameter is not within range', 
-                                        'OUT_OF_RANGE', 
+                                        ConversionErrorTypeEnum.OUT_OF_RANGE, 
                                         {
                                             lowerLimit: this._lowLimit, 
                                             upperLimit: this._upperLimit
@@ -43,7 +45,8 @@ class NumberToRomanConverter {
         }
         
         if(num === 0){ // roman numbers do not have a 0
-            throw new ConversionError('Parameter value is 0, roman numbers do not have a 0', 'VALUE_IS_ZERO');
+            throw new ConversionError('Parameter value is 0, roman numbers do not have a 0', 
+                                        ConversionErrorTypeEnum.VALUE_IS_ZERO);
         }
         
         // now we are sure we have a number we can handle. Result will hold the converted value

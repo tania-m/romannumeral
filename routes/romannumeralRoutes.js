@@ -1,7 +1,9 @@
 "use strict";
 
-const NumberToRomanConverter = require('./../romanNumberHandlers/numberToRomanConverter.js');
-const ConverterUpperLimits = require('./../romanNumberHandlers/conversionUpperLimits.js');
+const NumberToRomanConverter = require('./../romanNumberHandlers/numberToRomanConverter.js'),
+        ConverterUpperLimitsEnum = require('./../romanNumberHandlers/conversionUpperLimitsEnum.js'),
+        ConversionErrorTypeEnum = require('./../romanNumberHandlers/conversionErrorCodeEnum.js');
+
 const routes = require('express').Router();
 
 const apiVersion = process.env.API_VERSION || '1.0.0';
@@ -11,7 +13,7 @@ const apiVersion = process.env.API_VERSION || '1.0.0';
  * There are no side-effects, no state in the NumberToRomanConverter class. Reuse it between requests.
  * Once created, this object is read-only.
 */
-const converter = Object.freeze(new NumberToRomanConverter(ConverterUpperLimits.large.limit));
+const converter = Object.freeze(new NumberToRomanConverter(ConverterUpperLimitsEnum.LARGE.limit));
 
 /** 
   * Numeral to roman converter route.
@@ -32,28 +34,30 @@ routes.get('/romannumeral', (req, res) => {
         res.status(200).json({ roman: result });
     }
     catch (e) {
-        let errorObject = {};
-        switch(e.code){
-            case 'OUT_OF_RANGE' :
-            case 'NOT_AN_INTEGER' :
-            case 'VALUE_IS_ZERO' : {
-                errorObject = { error: e.code, 
+        if(e.code !== undefined && e.code !== null){ // if this is used as library, e.code might not be here for all Errors (e.g. Browser)
+            let errorObject = {};
+            switch(e.code){
+                case ConversionErrorTypeEnum.OUT_OF_RANGE :
+                case ConversionErrorTypeEnum.NOT_AN_INTEGER :
+                case ConversionErrorTypeEnum.VALUE_IS_ZERO : {
+                    errorObject = { error: e.code, 
                                         message: e.message,
                                         apiVersion: apiVersion
-                                };
-                if(e.details !== null){
-                    errorObject.details = e.details;
+                                    };
+                    if(e.details !== null){
+                        errorObject.details = e.details;
+                    }
+                    res.status(422).json(errorObject);
+                    break;
                 }
-                res.status(422).json(errorObject);
-                break;
+                default: { // something really wrong happened, crash early
+                    throw e;
+                }
             }
-            default: {
-                // Express comes with a built-in error handler that takes care of any errors that might be encountered in the app.
-                throw e;
-            }
+        } else { // something really wrong happened, crash early
+            throw e;
         }
     }
 });
-// **Note**: Could add some memoization and/or LRU caching if traffic gets higher.
 
 module.exports = routes;

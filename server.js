@@ -1,55 +1,26 @@
 "use strict";
 
 const express = require('express'),
-    cors = require('cors'),
-    helmet = require('helmet'),
-    hpp = require('hpp'),
-    slowDown = require('express-slow-down'),
-    toobusy = require('node-toobusy'),
-    morgan = require('morgan'),
-    winston = require('./monitoring/logging.js');
-
-const config = require('./config.js'),
+        Config = require('./config.js'), 
         routes = require('./routes');
 
-const cleanShutdownLimit = 10000;
+Config.configureEnvironment();
+const cleanShutdownLimit = process.env.SHUTDOWNLIMIT || 10000;
+const port = process.env.PORT || 8080;
+
 const app = express();
-
-// middlewares -------------------------------------------------------------
-app.use(cors()); // in case there are (legitimate) requests coming from another domain
-app.use(hpp()); // avoid parameter pollution (last value wins)
-app.use(helmet()); // for header security
-
-// rate limiter
-const speedLimiter = slowDown({
-    windowMs: 15 * 60 * 1000, // window for max requests per IP
-    delayAfter: 500, // allow 100 requests per 15 minutes, then...
-    delayMs: 250, // begin adding 500ms of delay per request above 100
-    maxDelayMs: 3000 // max delay
-});  
-app.use(speedLimiter);
-
-// return 503 if the server is too busy
-app.use(function(req, res, next) {
-    if (toobusy()) {
-        res.send(503, 'Server busy. Try again later.');
-    } else {
-        next();
-    }
-});
-
-app.use(morgan('combined', { stream: winston.stream })); // for log files
-app.use(morgan('common')); // for console
-// middlewares (end) --------------------------------------------------------
+Config.configureMiddlewares(app);
 
 app.use('/', routes);
 
-// Server - fallback to default server settings if port is not defined
-const server = app.listen( process.env.PORT || 8080, function(){
+/**
+ * Server 
+ * The server fall back to default server settings if port (8080) or shutdown limit (10000ms) are not defined
+*/
+const server = app.listen(port, function(){
     console.log('Romannumeral server listening on port ' + server.address().port);
 });
 
-// graceful shutdown
 /**
  *  Gracefully shuts down the server on SIGTERM or SIGINT kill signals.
 */

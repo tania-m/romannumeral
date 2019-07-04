@@ -379,7 +379,7 @@ describe('Responds to invalid routes with error', function () {
             done);
     });
 
-    it('Responds with an error for 0 as string (no 0 in roman notation)', function testRoute(done) {
+    it('Responds with an error for 0 (no 0 in roman notation)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: '0' })
