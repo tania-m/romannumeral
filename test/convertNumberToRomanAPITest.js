@@ -4,7 +4,6 @@ const request = require('supertest');
 
 describe('Responds to valid routes', function () {
     var server;
-    let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
         server = require('./../server.js');
@@ -113,7 +112,6 @@ describe('Responds to valid routes', function () {
 
 describe('Responds to non existing routes with 404', function () {
     var server;
-    let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
         server = require('./../server.js');
@@ -237,7 +235,6 @@ describe('Responds to edge cases without error', function () {
 
 describe('Uncapitalizes parts of URL if needed', function () {
     var server;
-    let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
         server = require('./../server.js');

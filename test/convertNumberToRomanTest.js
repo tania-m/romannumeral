@@ -1,7 +1,11 @@
 "use strict";
 
-const assert = require('assert');
-const NumberToRomanConverter = require('./../romanNumberHandlers/numberToRomanConverter.js');
+const chai = require('chai'),
+        assert = chai.assert;
+
+const NumberToRomanConverter = require('./../romanNumberHandlers/numberToRomanConverter.js'),
+        ConversionError = require('./../romanNumberHandlers/conversionError.js'),
+        ConverterUpperLimits = require('./../romanNumberHandlers/conversionUpperLimits.js');
 
 describe('Basic number to roman conversion (0-255)', function () {
     it('should convert 1 to I', function () {
@@ -273,6 +277,41 @@ describe('Large number conversions (>3999 up to 2200000000)', function () {
 
     it('should convert 2200000000 to M\u0305\u0305M\u0305\u0305C\u0305\u0305C\u0305\u0305', function () {
         let converter = new NumberToRomanConverter();
+        assert.equal(converter.convertNumToRoman(2200000000), 'M\u0305\u0305M\u0305\u0305C\u0305\u0305C\u0305\u0305');
+    });
+});
+
+describe('Limits handling', function () {
+    it('should say that 0 is not a roman number (throw an Error)', function () {
+        let converter = new NumberToRomanConverter(ConverterUpperLimits.small.limit);
+        assert.throw(function() { converter.convertNumToRoman(0) }, ConversionError);
+        assert.throw(function() { converter.convertNumToRoman(0) }, 'Parameter value is 0, roman numbers do not have a 0');
+    });
+    
+    it('should convert 255 to CCLV', function () {
+        let converter = new NumberToRomanConverter(ConverterUpperLimits.small.limit);
+        assert.equal(converter.convertNumToRoman(255), 'CCLV');
+    });
+
+    it('should say that 256 is out of range (throw an error)', function () {
+        let converter = new NumberToRomanConverter(ConverterUpperLimits.small.limit);
+        assert.throw(function() { converter.convertNumToRoman(256) }, ConversionError);
+        assert.throw(function() { converter.convertNumToRoman(256) }, 'Parameter is not within range');
+    });
+
+    it('should convert 3999 to MMMCMXCIX', function () {
+        let converter = new NumberToRomanConverter(ConverterUpperLimits.medium.limit);
+        assert.equal(converter.convertNumToRoman(3999), 'MMMCMXCIX');
+    });
+
+    it('should convert say that 4000 is out of range (throw an error)', function () {
+        let converter = new NumberToRomanConverter(ConverterUpperLimits.medium.limit);
+        assert.throw(function() { converter.convertNumToRoman(4000) }, ConversionError);
+        assert.throw(function() { converter.convertNumToRoman(4000) }, 'Parameter is not within range');
+    });
+
+    it('should convert 2200000000 to M\u0305\u0305M\u0305\u0305C\u0305\u0305C\u0305\u0305', function () {
+        let converter = new NumberToRomanConverter(ConverterUpperLimits.large.limit);
         assert.equal(converter.convertNumToRoman(2200000000), 'M\u0305\u0305M\u0305\u0305C\u0305\u0305C\u0305\u0305');
     });
 });

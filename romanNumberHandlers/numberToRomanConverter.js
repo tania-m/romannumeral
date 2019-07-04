@@ -10,14 +10,14 @@ const ConversionError = require('./conversionError.js');
  */
 class NumberToRomanConverter {
     /**
-     * Construct a number to roman converted for values between 0 and 2200000000
+     * Construct a number to roman converted for values between 0 and 2200000000.
+     * @returns {integer} upperLimit for number to roman conversion (defaults to 2200000000).
      */
-    constructor(){
-        this.lowLimit = 0;
-        this.upperLimit = 2200000000;
-
-        //const mapBuilder = new DecimalNumberToRomanMapBuilder(this.lowLimit, this.upperLimit);
-        this._romanMap = DecimalNumberToRomanMapBuilder.buildNumberToRomanMap(this.upperLimit);
+    constructor(upperLimit=2200000000){
+        this._lowLimit = 0;
+        this._upperLimit = upperLimit;
+        
+        this._romanMap = DecimalNumberToRomanMapBuilder.buildNumberToRomanMap(this._upperLimit);
     }
 
     /**
@@ -32,12 +32,12 @@ class NumberToRomanConverter {
             throw new ConversionError('Parameter is not an integer', 'NOT_AN_INTEGER');
         }
         
-        if(num < this.lowLimit || num > this.upperLimit){
+        if(num < this._lowLimit || num > this._upperLimit){
             throw new ConversionError('Parameter is not within range', 
                                         'OUT_OF_RANGE', 
                                         {
-                                            lowerLimit: this.lowLimit, 
-                                            upperLimit: this.upperLimit
+                                            lowerLimit: this._lowLimit, 
+                                            upperLimit: this._upperLimit
                                         }
                                     );
         }
@@ -53,7 +53,7 @@ class NumberToRomanConverter {
             // we need this to hold to use that algorithm (otherwise we would need to sort values beforehand)
             
             while (num % decimal < num) { // roman number will be build from left to right
-                result = result + roman; 
+                result = result.concat(roman); 
                 num = num - decimal; 
             }
         }
