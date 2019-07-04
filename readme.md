@@ -18,7 +18,7 @@ You can start using the server immediately by running the docker-compose file at
 
 From the root of the project, run:
 
-    docker-compose up -d
+    docker-compose up -d --build
 Once it is running, you can try out the server by going to http://localhost:8080/romannumeral?query=42. 
 
 To shutdown the server, from the root of the project run:
@@ -56,7 +56,7 @@ The first focus was to get a base working version (integer to roman conversion) 
 
 All functionalities must be unit tested, especially those used to do the roman numeral conversion (since they are of critical value for this server). Also, integration tests need to be written for added routes and functionalities, to verify that the server is capable of responding to requests as expected.
 
-To finish, API routes need to be documented in the project's swagger file. Code should also be documented.
+To finish, API routes need to be documented in the project's swagger file. Code must also be documented using JSDoc format. Automated documentation generation can then be done using [documentjs](https://documentjs.com/).
 
 ## Routes
 *Detailed route documentation can be found in the swagger/openapi file in the project folder api-documentation.* 
