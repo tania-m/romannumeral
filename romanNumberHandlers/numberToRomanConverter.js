@@ -1,6 +1,7 @@
 "use strict";
 
 // About roman numerals: https://www.mathsisfun.com/roman-numerals.html
+// Roman numerals: Where is the zero?: https://skidos.com/roman-numerals-where-is-the-zero/
 // For large roman numerals: http://roman-numerals.20m.com/
 
 const DecimalNumberToRomanMapBuilder = require('./decimalToRomanMapBuilder.js');
@@ -49,17 +50,18 @@ class NumberToRomanConverter {
                                         ConversionErrorTypeEnum.VALUE_IS_ZERO);
         }
         
-        // now we are sure we have a number we can handle. Result will hold the converted value
         let result = '';
         for (let [keyDecimalValue, roman] of this._romanMap) { 
             // class contract of map builder: key values where added from largest to smallest
-            // we need this to hold to use that algorithm (otherwise we would need to sort values beforehand)
             
             while (numToConvert % keyDecimalValue < numToConvert) { // roman number will be build from left to right
                 result = result.concat(roman); 
                 numToConvert = numToConvert - keyDecimalValue; 
             }
         }
+        // Possible improvement if we know the distribution of requests (frequencies of requests for values): 
+        // First binary search the best key value to start from in the map...
+        // (But this will not reduce asymptotic complexity, since in worse case with still have to go over the whole lookup map)
     
         return result;
     }
