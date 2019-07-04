@@ -133,7 +133,7 @@ Folders at root of this project:
 
 Files at root of the romannumeral API server project:
 - **settings.env**: default values for some environment values. 
-- **config.js** : reads and sets environment value defined in settings.env.
+- **config.js** : configures environment for the server (reads settings.env and sets up middlewares).
 - **docker-compose.yml**: file to build and run the API server in a Docker container.
 - **Dockerfile**: file to build the Docker image for this project.
 - **package.json**: lists informations about the project and dependencies.
@@ -146,7 +146,7 @@ Currently, only HTTP is supported out of the box. For HTTPS, please use a proxy 
 
 ## Tests
 Tests are available in the **test folder**. 
-There are two kind of tests:
+There are two kind of tests available currently in this project:
  - some testing the conversion functionality without the server capabilities (unit tests).
  - some testing the API server and its routes (integration tests).
  
