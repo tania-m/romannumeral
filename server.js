@@ -1,20 +1,12 @@
 "use strict";
 
 const express = require('express'),
-    cors = require('cors'),
-    helmet = require('helmet'),
-    hpp = require('hpp'),
-    slowDown = require('express-slow-down'),
-    toobusy = require('node-toobusy'),
-    morgan = require('morgan'),
-    winston = require('./monitoring/logging.js');
-
-const Config = require('./config.js'), 
+        Config = require('./config.js'), 
         routes = require('./routes');
 
-const cleanShutdownLimit = 10000;
-
 Config.configureEnvironment();
+const cleanShutdownLimit = process.env.SHUTDOWNLIMIT || 10000;
+const port = process.env.PORT || 8080;
 
 const app = express();
 Config.configureMiddlewares(app);
@@ -23,9 +15,9 @@ app.use('/', routes);
 
 /**
  * Server 
- * The server fall  back to default server settings if port is not defined
+ * The server fall back to default server settings if port (8080) or shutdown limit (10000ms) are not defined
 */
-const server = app.listen( process.env.PORT || 8080, function(){
+const server = app.listen(port, function(){
     console.log('Romannumeral server listening on port ' + server.address().port);
 });
 

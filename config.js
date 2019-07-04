@@ -1,7 +1,6 @@
 "use strict"; 
 
-const express = require('express'),
-    cors = require('cors'),
+const cors = require('cors'),
     helmet = require('helmet'),
     hpp = require('hpp'),
     slowDown = require('express-slow-down'),
@@ -23,9 +22,10 @@ class Config {
 
     /** 
      * Set environment variables using the .env file.
+     * Does not override previously set ENV variable (values set from outside are considered more important).
      */
     static configureEnvironment(){
-        dotenv.config({ path: './settings.env' }); // does not override previously set ENV variable (values set from outside are more important)
+        dotenv.config({ path: './settings.env' }); 
     }
 
     /**
@@ -34,15 +34,14 @@ class Config {
      * @param {object} expressApp, express application which needs middleware configuration
      */
     static configureMiddlewares(expressApp){
-        console.log('Setting up middlewares');
         expressApp.use(cors()); // in case there are (legitimate) requests coming from another domain
         expressApp.use(hpp()); // avoid parameter pollution (last value wins)
         expressApp.use(helmet()); // for header security
 
         // rate limiter
         const speedLimiter = slowDown({
-            windowMs: 15 * 60 * 1000, // window for max requests per IP
-            delayAfter: 500, // allow 100 requests per 15 minutes, then...
+            windowMs: 5 * 60 * 1000, // window for max requests per IP
+            delayAfter: 1000, // allow delayAfter requests per windowMs minutes, then...
             delayMs: 250, // begin adding 500ms of delay per request above 100
             maxDelayMs: 3000 // max delay
         });  
