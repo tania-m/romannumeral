@@ -5,7 +5,7 @@ const request = require('supertest');
 // tests for naughty strings, most taken from https://github.com/minimaxir/big-list-of-naughty-strings
 
 describe('No crash with special strings', function () {
-    let badStrings = [
+    const badStrings = [
         "", 
         "undefined", 
         "undef", 
@@ -331,7 +331,7 @@ describe('No crash with special strings', function () {
         "mocha",
         "eval(10)"];
     
-    var server;
+    let server;
     let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
@@ -362,7 +362,7 @@ describe('No crash with special strings', function () {
 });
 
 describe('Handles wrong numbers without crashing', function () {
-    let badStrings = [
+    const badStrings = [
         "$1.00",
         "--1",
         "-",
@@ -370,7 +370,7 @@ describe('Handles wrong numbers without crashing', function () {
         "-,",
         "NaN"];
     
-    var server;
+    let server;
     let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
@@ -401,7 +401,7 @@ describe('Handles wrong numbers without crashing', function () {
 });
 
 describe('Handles out of range numbers without crashing', function () {
-    let badStrings = [
+    const badStrings = [
         "-2147483648/-1",
         "-9223372036854775808/-1",
         "Infinity",
@@ -425,7 +425,7 @@ describe('Handles out of range numbers without crashing', function () {
         "0xffffffff"     
     ];
     
-    var server;
+    let server;
 
     beforeEach(function () {
         server = require('./../server.js');
@@ -450,7 +450,7 @@ describe('Handles out of range numbers without crashing', function () {
 });
 
 describe('Handles different number radix and notations without crashing', function () {
-    let badStrings = [
+    const badStrings = [
         "1",
         "1.00",
         "1E2",
@@ -471,7 +471,7 @@ describe('Handles different number radix and notations without crashing', functi
         "1'000'000,00"
         ];
     
-    var server;
+    let server;
 
     beforeEach(function () {
         server = require('./../server.js');
