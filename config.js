@@ -34,7 +34,6 @@ class Config {
      * @param {object} expressApp, express application which needs middleware configuration
      */
     static configureMiddlewares(expressApp){
-        let windowMs = process.env.RATELIMIT_WINDOW_MS            || (5 * 60 * 1000);
         let activateRateLimiter = process.env.ACTIVE_RATE_LIMITER || true;
 
         expressApp.use(cors()); // in case there are (legitimate) requests coming from another domain
@@ -43,6 +42,7 @@ class Config {
 
         // rate limiter
         if(activateRateLimiter){
+            let windowMs = process.env.RATELIMIT_WINDOW_MS            || (5 * 60 * 1000);
             let delayAfter = process.env.RATELIMIT_DELAYAFTER_MS      || 1000;
             let delayMs = process.env.RATELIMIT_DELAY_MS              || 250;
             let maxDelayMs = process.env.RATELIMIT_MAXDELAY_MS        || 3000;
