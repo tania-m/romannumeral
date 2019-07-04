@@ -34,16 +34,21 @@ class Config {
      * @param {object} expressApp, express application which needs middleware configuration
      */
     static configureMiddlewares(expressApp){
+        let windowMs = process.env.RATELIMIT_WINDOW_MS       || (5 * 60 * 1000);
+        let delayAfter = process.env.RATELIMIT_DELAYAFTER_MS || 1000;
+        let delayMs = process.env.RATELIMIT_DELAY_MS         || 250;
+        let maxDelayMs = process.env.RATELIMIT_MAXDELAY_MS   || 3000;
+
         expressApp.use(cors()); // in case there are (legitimate) requests coming from another domain
         expressApp.use(hpp()); // avoid parameter pollution (last value wins)
         expressApp.use(helmet()); // for header security
 
         // rate limiter
         const speedLimiter = slowDown({
-            windowMs: 5 * 60 * 1000, // window for max requests per IP
-            delayAfter: 1000, // allow delayAfter requests per windowMs minutes, then...
-            delayMs: 250, // begin adding 500ms of delay per request above 100
-            maxDelayMs: 3000 // max delay
+            windowMs: windowMs, // window for max requests per IP
+            delayAfter: delayAfter, // allow delayAfter requests per windowMs minutes, then...
+            delayMs: delayMs, // begin adding 500ms of delay per request above 100
+            maxDelayMs: maxDelayMs // max delay
         });  
         expressApp.use(speedLimiter);
 
