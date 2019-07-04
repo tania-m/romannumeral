@@ -34,7 +34,14 @@ class Config {
      * @param {object} expressApp, express application which needs middleware configuration
      */
     static configureMiddlewares(expressApp){
-        let activateRateLimiter = process.env.ACTIVE_RATE_LIMITER || true;
+        let activateRateLimiter = true;
+        if(process.env.ACTIVE_RATE_LIMITER !== undefined
+            && process.env.ACTIVE_RATE_LIMITER !== null){
+            // test string value because dotenv loads boolean as string
+            if(process.env.ACTIVE_RATE_LIMITER !== 'active'){
+                activateRateLimiter = false;
+            }
+        }
 
         expressApp.use(cors()); // in case there are (legitimate) requests coming from another domain
         expressApp.use(hpp()); // avoid parameter pollution (last value wins)
