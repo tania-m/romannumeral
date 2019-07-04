@@ -8,7 +8,8 @@
     "install-and-test": "npm i && mocha test",
     "test": "mocha test",
     "docker-build": "docker build . -t local:romannumeral",
-    "docker-build-run": "docker-compose up -d"
+    "docker-build-run": "docker-compose up -d",
+    "docker-build-run-foreground": "docker-compose up"
   },
   "keywords": [
     "roman",
