@@ -9,7 +9,7 @@ class ConversionError extends Error {
      * @param {string} code, error code
      * @param {object} details, contains details about the error (may be empty)
      */
-    constructor (message, code, details) {
+    constructor (message, code, details=null) {
         super(message);
 
         // Capturing stack trace, excluding constructor call from it.
