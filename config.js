@@ -49,7 +49,7 @@ class Config {
             const speedLimiter = slowDown({
                 windowMs: windowMs, // window for max requests per IP
                 delayAfter: delayAfter, // allow delayAfter requests per windowMs minutes, then...
-                delayMs: delayMs, // begin adding 500ms of delay per request above 100
+                delayMs: delayMs, // begin adding delayMs of delay per request above windowMs
                 maxDelayMs: maxDelayMs // max delay
             });  
             expressApp.use(speedLimiter);
