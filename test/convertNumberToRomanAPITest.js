@@ -335,7 +335,7 @@ describe('Responds to invalid routes with error', function () {
             done);
     });
 
-    it('Responds with an error for value out of range', function testRoute(done) {
+    it('Responds with an error for value out of range (99999999999999)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: 99999999999999 })
@@ -345,12 +345,12 @@ describe('Responds to invalid routes with error', function () {
                     'error': 'OUT_OF_RANGE',
                     'message': 'Parameter is not within range',
                     'apiVersion': apiVersion,
-                    'details': { lowerLimit: 0, upperLimit: 2200000000 }
+                    'details': { lowerLimit: 1, upperLimit: 2200000000 }
                 },
             done);
     });
 
-    it('Responds with an error for value out of range', function testRoute(done) {
+    it('Responds with an error for value out of range (-1)', function testRoute(done) {
         request(server)
             .get('/romannumeral')
             .query({ query: -1 })
@@ -360,7 +360,82 @@ describe('Responds to invalid routes with error', function () {
                     'error': 'OUT_OF_RANGE',
                     'message': 'Parameter is not within range',
                     'apiVersion': apiVersion,
-                    'details': { lowerLimit: 0, upperLimit: 2200000000 }
+                    'details': { lowerLimit: 1, upperLimit: 2200000000 }
+                },
+            done);
+    });
+
+    it('Responds with an error for value out of range (-255)', function testRoute(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: -255 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                    'error': 'OUT_OF_RANGE',
+                    'message': 'Parameter is not within range',
+                    'apiVersion': apiVersion,
+                    'details': { lowerLimit: 1, upperLimit: 2200000000 }
+                },
+            done);
+    });
+
+    it('Responds with an error for value out of range (-256)', function testRoute(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: -256 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                    'error': 'OUT_OF_RANGE',
+                    'message': 'Parameter is not within range',
+                    'apiVersion': apiVersion,
+                    'details': { lowerLimit: 1, upperLimit: 2200000000 }
+                },
+            done);
+    });
+
+    it('Responds with an error for value out of range (-3999)', function testRoute(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: -3999 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                    'error': 'OUT_OF_RANGE',
+                    'message': 'Parameter is not within range',
+                    'apiVersion': apiVersion,
+                    'details': { lowerLimit: 1, upperLimit: 2200000000 }
+                },
+            done);
+    });
+
+    it('Responds with an error for value out of range (-4000)', function testRoute(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: -4000 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                    'error': 'OUT_OF_RANGE',
+                    'message': 'Parameter is not within range',
+                    'apiVersion': apiVersion,
+                    'details': { lowerLimit: 1, upperLimit: 2200000000 }
+                },
+            done);
+    });
+
+    it('Responds with an error for value out of range (-2200000001)', function testRoute(done) {
+        request(server)
+            .get('/romannumeral')
+            .query({ query: -2200000001 })
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(422, {
+                    'error': 'OUT_OF_RANGE',
+                    'message': 'Parameter is not within range',
+                    'apiVersion': apiVersion,
+                    'details': { lowerLimit: 1, upperLimit: 2200000000 }
                 },
             done);
     });
@@ -373,7 +448,8 @@ describe('Responds to invalid routes with error', function () {
             .expect('Content-Type', /json/)
             .expect(422, {
                     'error': 'VALUE_IS_ZERO',
-                    'message': 'Parameter value is 0, roman numbers do not have a 0',
+                    'message': 'Parameter value is 0, roman numbers do not have a 0. Zero is out of supported range for conversions. Smallest supported value is 1.',
+                    'details': { lowerLimit: 1},
                     'apiVersion': apiVersion
                 },
             done);
@@ -387,7 +463,8 @@ describe('Responds to invalid routes with error', function () {
             .expect('Content-Type', /json/)
             .expect(422, {
                     'error': 'VALUE_IS_ZERO',
-                    'message': 'Parameter value is 0, roman numbers do not have a 0',
+                    'message': 'Parameter value is 0, roman numbers do not have a 0. Zero is out of supported range for conversions. Smallest supported value is 1.',
+                    'details': { lowerLimit: 1},
                     'apiVersion': apiVersion
                 },
             done);
