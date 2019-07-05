@@ -6,11 +6,12 @@ describe('Responds to valid routes', function () {
     var server;
 
     beforeEach(function () {
+        delete require.cache[require.resolve('./../server')];
         server = require('./../server.js');
     });
 
-    afterEach(function () {
-        server.close();
+    afterEach(function (done) {
+        server.close(done);
     });
 
     it('responds to /romannumeral (query = 50)', function testRoute(done) {
@@ -114,11 +115,12 @@ describe('Responds to non existing routes with 404', function () {
     var server;
 
     beforeEach(function () {
+        delete require.cache[require.resolve('./../server')];
         server = require('./../server.js');
     });
 
-    afterEach(function () {
-        server.close();
+    afterEach(function (done) {
+        server.close(done);
     });
 
     it('responds to /foobar ', function testRoute(done) {
@@ -161,11 +163,12 @@ describe('Responds to edge cases without error', function () {
     let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
+        delete require.cache[require.resolve('./../server')];
         server = require('./../server.js');
     });
 
-    afterEach(function () {
-        server.close();
+    afterEach(function (done) {
+        server.close(done);
     });
 
     it('Parameter sent as string, but still capable to return a response', function testRoute(done) {
@@ -237,11 +240,12 @@ describe('Uncapitalizes parts of URL if needed', function () {
     var server;
 
     beforeEach(function () {
+        delete require.cache[require.resolve('./../server')];
         server = require('./../server.js');
     });
 
-    afterEach(function () {
-        server.close();
+    afterEach(function (done) {
+        server.close(done);
     });
 
     it('responds to /ROMANNUMERAL (query = 249)', function testRoute(done) {
@@ -274,11 +278,12 @@ describe('Responds to invalid routes with error', function () {
     let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
+        delete require.cache[require.resolve('./../server')];
         server = require('./../server.js');
     });
 
-    afterEach(function () {
-        server.close();
+    afterEach(function (done) {
+        server.close(done);
     });
 
     it('HPP: Keeps only last parameter of the parameters with same name in query', function testRoute(done) {
