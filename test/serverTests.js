@@ -7,11 +7,12 @@ describe('Loading express', function () {
     let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
+        delete require.cache[require.resolve('./../server')];
         server = require('./../server.js');
     });
 
-    afterEach(function () {
-        server.close();
+    afterEach(function (done) {
+        server.close(done);
     });
 
     it('responds to /version', function testPath(done) {
@@ -38,6 +39,18 @@ describe('Loading express', function () {
     it('404 if direct root access', function testPath(done) {
         request(server)
             .get('/')
+            .expect(404, done); 
+    });
+
+    it('404 if direct root access', function testPath(done) {
+        request(server)
+            .get('/')
+            .expect(404, done); 
+    });
+
+    it('404 romannumeral typo in URL', function testPath(done) {
+        request(server)
+            .get('/romaumeral')
             .expect(404, done);
     });
 });

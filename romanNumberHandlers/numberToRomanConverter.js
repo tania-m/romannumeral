@@ -16,7 +16,7 @@ class NumberToRomanConverter {
      * @returns {integer} upperLimit for number to roman conversion (defaults to 2200000000).
      */
     constructor(upperLimit=2200000000){
-        this._lowLimit = 0;
+        this._lowLimit = 1;
         this._upperLimit = upperLimit;
         
         this._romanMap = DecimalNumberToRomanMapBuilder.buildNumberToRomanMap(this._upperLimit);
@@ -35,6 +35,14 @@ class NumberToRomanConverter {
                                         ConversionErrorTypeEnum.NOT_AN_INTEGER);
         }
         
+        if(numToConvert === 0){ // roman numbers do not have a 0, give more details to caller about that case
+            throw new ConversionError('Parameter value is 0, roman numbers do not have a 0. Zero is out of supported range for conversions. Smallest supported value is 1.', 
+                                        ConversionErrorTypeEnum.VALUE_IS_ZERO,
+                                        {
+                                            lowerLimit: this._lowLimit
+                                        });
+        }
+
         if(numToConvert < this._lowLimit || numToConvert > this._upperLimit){
             throw new ConversionError('Parameter is not within range', 
                                         ConversionErrorTypeEnum.OUT_OF_RANGE, 
@@ -43,11 +51,6 @@ class NumberToRomanConverter {
                                             upperLimit: this._upperLimit
                                         }
                                     );
-        }
-        
-        if(numToConvert === 0){ // roman numbers do not have a 0
-            throw new ConversionError('Parameter value is 0, roman numbers do not have a 0', 
-                                        ConversionErrorTypeEnum.VALUE_IS_ZERO);
         }
         
         let result = '';

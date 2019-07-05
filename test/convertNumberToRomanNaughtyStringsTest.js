@@ -335,11 +335,12 @@ describe('No crash with special strings', function () {
     let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
+        delete require.cache[require.resolve('./../server')];
         server = require('./../server.js');
     });
 
-    afterEach(function () {
-        server.close();
+    afterEach(function (done) {
+        server.close(done);
     });
 
     for(let i =0; i < badStrings.length; i++){
@@ -374,11 +375,12 @@ describe('Handles wrong numbers without crashing', function () {
     let apiVersion = process.env.API_VERSION || '1.0.0';
 
     beforeEach(function () {
+        delete require.cache[require.resolve('./../server')];
         server = require('./../server.js');
     });
 
-    afterEach(function () {
-        server.close();
+    afterEach(function (done) {
+        server.close(done);
     });
 
     for(let i =0; i < badStrings.length; i++){
@@ -428,11 +430,12 @@ describe('Handles out of range numbers without crashing', function () {
     let server;
 
     beforeEach(function () {
+        delete require.cache[require.resolve('./../server')];
         server = require('./../server.js');
     });
 
-    afterEach(function () {
-        server.close();
+    afterEach(function (done) {
+        server.close(done);
     });
 
     for(let i =0; i < badStrings.length; i++){
@@ -474,11 +477,12 @@ describe('Handles different number radix and notations without crashing', functi
     let server;
 
     beforeEach(function () {
+        delete require.cache[require.resolve('./../server')];
         server = require('./../server.js');
     });
 
-    afterEach(function () {
-        server.close();
+    afterEach(function (done) {
+        server.close(done);
     });
 
     for(let i =0; i < badStrings.length; i++){
