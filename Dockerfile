@@ -17,16 +17,20 @@ ENV API_VERSION=1.0.0
 ENV NODE_ENV=production
 ENV ACTIVE_RATE_LIMITER=active
 
-RUN mkdir -p app
+RUN mkdir -p app && mkdir -p app/logs
 WORKDIR app
 COPY . .
 
+# Only production dependencies
 RUN npm i --only=production
 
 ENV PORT 8080
 EXPOSE 8080
 
-RUN addgroup -S romannumeralgroup && adduser -S romannumeral -G romannumeralgroup
+# Non-root user
+RUN addgroup -S romannumeralgroup && \
+    adduser -S romannumeral -G romannumeralgroup && \
+    chown romannumeral:romannumeralgroup logs
 USER romannumeral
 
 CMD ["node", "./server.js"]
