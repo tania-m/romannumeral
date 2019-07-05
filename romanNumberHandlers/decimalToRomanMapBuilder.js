@@ -1,6 +1,7 @@
 "use strict";
 
 // About roman numerals: https://www.mathsisfun.com/roman-numerals.html
+// Roman numerals: Where is the zero: https://skidos.com/roman-numerals-where-is-the-zero/
 
 // For large roman numerals: http://roman-numerals.20m.com/ 
 //  => \u0305 is the UTF-8 character to put a bar on letters
@@ -9,25 +10,28 @@
  */
 class DecimalNumberToRomanMapBuilder{
     /**
-     * This method builds the lookup table for key integer to roman values.
+     * This method builds the lookup table for key integer to roman values. 
+     * Keys in the map are sorted in decreasing order.
+     * Here we have a limit in size for values that are convertible, so we use a lookup table for key values.:
+     * We don't need to reconstruct the key roman numerals for large numbers each time we convert.
      * @returns {string} lookup map, values are added from largest to smallest key values
      */
     static buildNumberToRomanMap(upperLimit){
         let romanMap = new Map(); 
-        /* 
-            **Note**: Here we have a limit in size, so the look-up table is good:
-            We don't need to reconstruct the key roman numerals for large numbers.
-            BUT if we remove the upper limit, we will have to construct the litterals dynamically;
-            that's were we can start using the pattern we see ermerging:
-            large numbers follow the notation rule for numbers between 1 and 1000
-            with additional bars on top depending on the size.
-        */
-        
-        // order of addition is important (we want largest to smallest)
-        // Map is ordered in the order of insertion so this holds.
+
+        // Order of addition into the Map is important (we want largest to smallest).
+        // Map in JS is ordered in the order of insertion so this holds and we can use Map. Map also ensures we have no duplicate key.
+        // If the sorting would not hold, we would have to come up with a Data structure that keeps elements sorted and without duplicates. 
+        // (e.g. array containing objects of type {key: val, roman: romanVal} with a custom sort based on the keyValue for ordering)
         if(upperLimit >= 4000){ // add mapping for large numbers
             romanMap = this._buildNumberToRomanMapForLargeNumbers(romanMap);
             romanMap = this._buildNumberToRomanMapForMidsizeNumbers(romanMap);
+            /* 
+                **Note**: If we remove the upper limit, we will have to construct the roman litterals dynamically;
+                that's were we can start using the pattern we see emerging:
+                large numbers follow the notation rule for numbers between 1 and 1000
+                with additional bars on top depending on the size (number of zeros).
+            */
         }
 
         if(upperLimit > 255){
@@ -127,3 +131,32 @@ class DecimalNumberToRomanMapBuilder{
 }
 
 module.exports = DecimalNumberToRomanMapBuilder;
+
+
+
+
+
+/*
+Why do we need a lookup table?
+An alphabet A is a finite non-empty set of symbols. In our case, to represent roman numerals,
+we need a set of symbols that represent key values with which we can construct all other. The set of 
+symboles is finite because we have an upper limit for the conversion. Here, for instance, "I" and "V"
+are letters of the alphabet. "IV", despite being written with two characters, is also considered to be
+a letter of the alphabet, since it is the way to write 4.
+
+Some symbols are repeated in keys. Why do we need an extended alphabet?
+Here, I have chosen to use an extended alphabet in order to be able to use more than one roman numeral
+conversion algorithm: The algorithm I used in numberToRomanConverter needs a table with keys for values like 
+4 and 9 and builds the string from left to right (reading direction). That avoids to have to reverse the string
+before sending it back. 
+Another way to do the conversion is to start doing it from right to left. In that case,
+we can use a smaller map which doesn't include cases for IX and IV (for instance), because the algorithm can
+"move around" in the string and place the symbols where they are needed to form IV (for instance). 
+Then, before returning the result, the string has to be reversed.
+
+Can we reduce the needed space?
+We can reduce the needed space for that map by using another conversion algorithm. But this would constrain
+indirectly the numberToRomanConverter class to use an algorithm that can be supported by the lookup map.
+This indirectly creates a logical dependance, that I wanted to avoid here. The extended map covers more
+than one algorithm (even if some algorithms may have to filter out some values of the map).
+*/

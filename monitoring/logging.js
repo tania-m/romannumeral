@@ -11,22 +11,22 @@ var options = {
         json: true,
         maxsize: 5242880, // 5MB
         maxFiles: 3,
-        colorize: false,
+        colorize: false
     }
 };
 
-  // instantiate a new Winston Logger with the settings defined above
+// instantiate a new Winston Logger with the settings defined above
 var logger = winston.createLogger({
     transports: [
         new winston.transports.File(options.file)
     ]
 });
 
-  // create a stream object with a 'write' function that will be used by morgan
+// create a stream object with a 'write' function that will be used by morgan
 logger.stream = {
     write: function(message, encoding) {
         logger.info(message);
-    },
+    }
 };
 
 module.exports = logger;

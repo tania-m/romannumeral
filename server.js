@@ -5,7 +5,7 @@ const express = require('express'),
         routes = require('./routes');
 
 Config.configureEnvironment();
-const cleanShutdownLimit = process.env.SHUTDOWNLIMIT || 10000;
+const cleanShutdownLimit = process.env.SHUTDOWNLIMIT_MS || 10000;
 const port = process.env.PORT || 8080;
 
 const app = express();

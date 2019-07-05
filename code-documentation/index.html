@@ -24,6 +24,116 @@
           <div id='toc'>
             <ul class='list-reset h5 py1-ul'>
               
+                
+                <li><a
+                  href='#conversionupperlimits'
+                  class="">
+                  ConversionUpperLimits
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#numbertoromanconverter'
+                  class=" toggle-sibling">
+                  NumberToRomanConverter
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#numbertoromanconverterconvertnumtoroman'
+                        class='regular pre-open'>
+                        #convertNumToRoman
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#decimalnumbertoromanmapbuilder'
+                  class=" toggle-sibling">
+                  DecimalNumberToRomanMapBuilder
+                  <span class='icon'>▸</span>
+                </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  <ul class='list-reset py1-ul pl1'>
+                    <li class='h5'><span>Static members</span></li>
+                    
+                      <li><a
+                        href='#decimalnumbertoromanmapbuilderbuildnumbertoromanmap'
+                        class='regular pre-open'>
+                        .buildNumberToRomanMap
+                      </a></li>
+                    
+                      <li><a
+                        href='#decimalnumbertoromanmapbuilder_buildnumbertoromanmapforlargenumbers'
+                        class='regular pre-open'>
+                        ._buildNumberToRomanMapForLargeNumbers
+                      </a></li>
+                    
+                      <li><a
+                        href='#decimalnumbertoromanmapbuilder_buildnumbertoromanmapformidsizenumbers'
+                        class='regular pre-open'>
+                        ._buildNumberToRomanMapForMidsizeNumbers
+                      </a></li>
+                    
+                      <li><a
+                        href='#decimalnumbertoromanmapbuilder_buildnumbertoromanmapforthousands'
+                        class='regular pre-open'>
+                        ._buildNumberToRomanMapForThousands
+                      </a></li>
+                    
+                      <li><a
+                        href='#decimalnumbertoromanmapbuilder_buildnumbertoromanmapforsmallnumbers'
+                        class='regular pre-open'>
+                        ._buildNumberToRomanMapForSmallNumbers
+                      </a></li>
+                    
+                    </ul>
+                  
+                  
+                  
+                  
+                </div>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#conversionerrorcodes'
+                  class="">
+                  ConversionErrorCodes
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#conversionerror'
+                  class="">
+                  ConversionError
+                  
+                </a>
+                
+                </li>
+              
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
@@ -32,6 +142,750 @@
         </div>
       </div>
       <div id='split-right' class='relative overflow-auto height-viewport-100'>
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='conversionupperlimits'>
+      ConversionUpperLimits
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Enum for conversion upper limits.
+SMALL:   { name: "0->255", limit: 255 }: upper limit is 255 (included),
+MEDIUM:  { name: "0->3999", limit: 3999 }: upper limit is 3999 (included),
+LARGE: { name: "0->2200000000", limit: 2200000000 }: upper limit is 2200000000 (included).</p>
+
+    <div class='pre p1 fill-light mt0'>ConversionUpperLimits</div>
+  
+    <p>
+      Type:
+      {name: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, limit: integer}
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='numbertoromanconverter'>
+      NumberToRomanConverter
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This class is a converter for integers to roman numerals (values between 0 and 2200000000).</p>
+
+    <div class='pre p1 fill-light mt0'>new NumberToRomanConverter(upperLimit: any)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>upperLimit</span> <code class='quiet'>(any
+            = <code>2200000000</code>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='numbertoromanconverterconvertnumtoroman'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>convertNumToRoman(numToConvert)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>This method turns an integer into a roman numeral.</p>
+
+    <div class='pre p1 fill-light mt0'>convertNumToRoman(numToConvert: integer): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>numToConvert</span> <code class='quiet'>(integer)</code>
+	    , an integer between 0 and 2200000000. Only integers are valid input values.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        number converted to roman notation.
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='decimalnumbertoromanmapbuilder'>
+      DecimalNumberToRomanMapBuilder
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>This class contains the map needed to convert decimal integers to roman numbers (values between 0 and 2200000000).</p>
+
+    <div class='pre p1 fill-light mt0'>new DecimalNumberToRomanMapBuilder()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Static Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='decimalnumbertoromanmapbuilderbuildnumbertoromanmap'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>buildNumberToRomanMap(upperLimit)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>This method builds the lookup table for key integer to roman values.
+Keys in the map are sorted in decreasing order.
+Here we have a limit in size for values that are convertible, so we use a lookup table for key values.:
+We don't need to reconstruct the key roman numerals for large numbers each time we convert.</p>
+
+    <div class='pre p1 fill-light mt0'>buildNumberToRomanMap(upperLimit: any): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>upperLimit</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        lookup map, values are added from largest to smallest key values
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='decimalnumbertoromanmapbuilder_buildnumbertoromanmapforlargenumbers'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>_buildNumberToRomanMapForLargeNumbers(decimalToRomanMap)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Builds the map from decimal to romans for numbers with key values from 1000000 to 1000000000.
+Not all decimal numbers need a representation, a predefined set of values can help built a lot of others.</p>
+
+    <div class='pre p1 fill-light mt0'>_buildNumberToRomanMapForLargeNumbers(decimalToRomanMap: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>decimalToRomanMap</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>)</code>
+	    , a map to contain decimal integer to roman mapping
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></code>:
+        containing the additional mappings for large numbers
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='decimalnumbertoromanmapbuilder_buildnumbertoromanmapformidsizenumbers'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>_buildNumberToRomanMapForMidsizeNumbers(decimalToRomanMap)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Builds the map from decimal to romans for numbers with key values from 4000 to 90000.
+Not all decimal numbers need a representation, a predefined set of values can help built a lot of others.</p>
+
+    <div class='pre p1 fill-light mt0'>_buildNumberToRomanMapForMidsizeNumbers(decimalToRomanMap: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>decimalToRomanMap</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>)</code>
+	    , a map to contain decimal integer to roman mapping
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></code>:
+        containing additional the mappings for midsize numbers
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='decimalnumbertoromanmapbuilder_buildnumbertoromanmapforthousands'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>_buildNumberToRomanMapForThousands(decimalToRomanMap)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Builds the map from decimal to romans with key values for numbers from 400 to 1000.
+Not all decimal numbers need a representation, a predefined set of values can help built a lot of others.
+0 is excluded because roman numbers don't have a 0.      *</p>
+
+    <div class='pre p1 fill-light mt0'>_buildNumberToRomanMapForThousands(decimalToRomanMap: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>decimalToRomanMap</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>)</code>
+	    , a map to contain decimal integer to roman mapping
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></code>:
+        containing the mappings
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='decimalnumbertoromanmapbuilder_buildnumbertoromanmapforsmallnumbers'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>_buildNumberToRomanMapForSmallNumbers(decimalToRomanMap)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Builds the map from decimal to romans with key values for numbers from 1 to 100.
+Not all decimal numbers need a representation, a predefined set of values can help built a lot of others.
+0 is excluded because roman numbers don't have a 0.      *</p>
+
+    <div class='pre p1 fill-light mt0'>_buildNumberToRomanMapForSmallNumbers(decimalToRomanMap: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>decimalToRomanMap</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a>)</code>
+	    , a map to contain decimal integer to roman mapping
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></code>:
+        containing the mappings
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='conversionerrorcodes'>
+      ConversionErrorCodes
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Enum for error codes.
+NOT_AN_INTEGER: 'NOT_AN_INTEGER': the value is not an integer/cannot be converter to an integer,
+OUT_OF_RANGE: 'OUT_OF_RANGE': the value is not in the supported conversion range,
+VALUE_IS_ZERO: 'VALUE_IS_ZERO': the value to convert is 0 (no 0 in roman litterals).</p>
+
+    <div class='pre p1 fill-light mt0'>ConversionErrorCodes</div>
+  
+    <p>
+      Type:
+      {error_code: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>}
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='conversionerror'>
+      ConversionError
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Custom exception class for conversion errors.</p>
+
+    <div class='pre p1 fill-light mt0'>new ConversionError(message: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, code: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, details: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</div>
+  
+  
+    <p>
+      Extends
+      
+        <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a>
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>message</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    , error message
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>code</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    , error code
+
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>details</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
+            = <code>null</code>)</code>
+	    , contains details about the error (may be empty)
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
         
       </div>
     </div>

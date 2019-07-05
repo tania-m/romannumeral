@@ -1,6 +1,7 @@
 "use strict";
 
 // About roman numerals: https://www.mathsisfun.com/roman-numerals.html
+// Roman numerals: Where is the zero?: https://skidos.com/roman-numerals-where-is-the-zero/
 // For large roman numerals: http://roman-numerals.20m.com/
 
 const DecimalNumberToRomanMapBuilder = require('./decimalToRomanMapBuilder.js');
@@ -23,18 +24,18 @@ class NumberToRomanConverter {
 
     /**
      * This method turns an integer into a roman numeral.
-     * @param {integer} num, an integer between 0 and 2200000000. Only integers are valid input values.
+     * @param {integer} numToConvert, an integer between 0 and 2200000000. Only integers are valid input values.
      * @returns {string} number converted to roman notation.
      */
-    convertNumToRoman(num){
-        if(Number.isNaN(num) 
-            || !Number.isInteger(num) 
-            || !Number.isFinite(num)){
+    convertNumToRoman(numToConvert){
+        if(Number.isNaN(numToConvert) 
+            || !Number.isInteger(numToConvert) 
+            || !Number.isFinite(numToConvert)){
             throw new ConversionError('Parameter is not an integer', 
                                         ConversionErrorTypeEnum.NOT_AN_INTEGER);
         }
         
-        if(num < this._lowLimit || num > this._upperLimit){
+        if(numToConvert < this._lowLimit || numToConvert > this._upperLimit){
             throw new ConversionError('Parameter is not within range', 
                                         ConversionErrorTypeEnum.OUT_OF_RANGE, 
                                         {
@@ -44,22 +45,23 @@ class NumberToRomanConverter {
                                     );
         }
         
-        if(num === 0){ // roman numbers do not have a 0
+        if(numToConvert === 0){ // roman numbers do not have a 0
             throw new ConversionError('Parameter value is 0, roman numbers do not have a 0', 
                                         ConversionErrorTypeEnum.VALUE_IS_ZERO);
         }
         
-        // now we are sure we have a number we can handle. Result will hold the converted value
         let result = '';
-        for (let [decimal, roman] of this._romanMap) { 
+        for (let [keyDecimalValue, roman] of this._romanMap) { 
             // class contract of map builder: key values where added from largest to smallest
-            // we need this to hold to use that algorithm (otherwise we would need to sort values beforehand)
             
-            while (num % decimal < num) { // roman number will be build from left to right
+            while (numToConvert % keyDecimalValue < numToConvert) { // roman number will be build from left to right
                 result = result.concat(roman); 
-                num = num - decimal; 
+                numToConvert = numToConvert - keyDecimalValue; 
             }
         }
+        // Possible improvement if we know the distribution of requests (frequencies of requests for values): 
+        // First binary search the best key value to start from in the map...
+        // (But this will not reduce asymptotic complexity, since in worse case with still have to go over the whole lookup map)
     
         return result;
     }
