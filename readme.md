@@ -16,10 +16,10 @@ Two resources are important for working on the development of that server. They 
 *Prerequisite: Needs to have Docker installed.*
 You can start using the server immediately by running the docker-compose file at the root of the project. The server will be listening on port 8080 (per default).
 
-From the root of the project, run:
+From the root of the project, to run in background:
 
     docker-compose up -d --build
-Once it is running, you can try out the server by going to http://localhost:8080/romannumeral?query=42. 
+Once it is running, you can try out the server by doing ` curl http://localhost:8080/romannumeral?query=42` (or click [http://localhost:8080/romannumeral?query=42](http://localhost:8080/romannumeral?query=42)).
 
 To shutdown the server, from the root of the project run:
 
@@ -140,9 +140,9 @@ Files at root of the romannumeral API server project:
 - **package.json**: lists informations about the project and dependencies.
 - **server.js**: file containing code for the server.
 
-At runtime, and additional folder "logs" is added to hold log files.
+At runtime, and additional folder "logs" holds log files.
 
-*Note: That documentation is not made available through the API server when the server is running, it is mostly for development/testing/deployment usage. HTML files were generated for better documentation readability and developer convenience.*
+*Note: Folders api-documentation and code-documentation are not made available through the API server when the server is running (avoids leaking information about the server). It is mostly for development/testing/deployment usage. HTML files were generated for better documentation readability and developer convenience.*
 
 ## Production usage
 Currently, only HTTP is supported out of the box. For HTTPS, please use a proxy (like [NGINX](https://www.nginx.com/)) in front of this server.
