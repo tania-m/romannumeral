@@ -260,7 +260,7 @@ LARGE: { name: "0->2200000000", limit: 2200000000 }: upper limit is 2200000000 (
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>convertNumToRoman(num)</span>
+            <span class='code strong strong truncate'>convertNumToRoman(numToConvert)</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -270,7 +270,7 @@ LARGE: { name: "0->2200000000", limit: 2200000000 }: upper limit is 2200000000 (
 
   <p>This method turns an integer into a roman numeral.</p>
 
-    <div class='pre p1 fill-light mt0'>convertNumToRoman(num: integer): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+    <div class='pre p1 fill-light mt0'>convertNumToRoman(numToConvert: integer): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
   
   
 
@@ -287,7 +287,7 @@ LARGE: { name: "0->2200000000", limit: 2200000000 }: upper limit is 2200000000 (
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>num</span> <code class='quiet'>(integer)</code>
+            <span class='code bold'>numToConvert</span> <code class='quiet'>(integer)</code>
 	    , an integer between 0 and 2200000000. Only integers are valid input values.
 
           </div>
@@ -389,7 +389,10 @@ LARGE: { name: "0->2200000000", limit: 2200000000 }: upper limit is 2200000000 (
 
   
 
-  <p>This method builds the lookup table for key integer to roman values.</p>
+  <p>This method builds the lookup table for key integer to roman values.
+Keys in the map are sorted in decreasing order.
+Here we have a limit in size for values that are convertible, so we use a lookup table for key values.:
+We don't need to reconstruct the key roman numerals for large numbers each time we convert.</p>
 
     <div class='pre p1 fill-light mt0'>buildNumberToRomanMap(upperLimit: any): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
   
