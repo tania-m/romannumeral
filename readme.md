@@ -4,7 +4,7 @@
 [Goal](https://github.com/tania-m/romannumeral#goal) | [References](https://github.com/tania-m/romannumeral#references) | [Quickstart](https://github.com/tania-m/romannumeral#quickstart-build-and-run) | [Run in Docker](https://github.com/tania-m/romannumeral#build-a-docker-image-and-run-in-container) | [Run on machine directly](https://github.com/tania-m/romannumeral#run-on-your-machine-no-container) | [Development methodology](https://github.com/tania-m/romannumeral#development-methodology) | [Routes](https://github.com/tania-m/romannumeral#routes) | [Package layout](https://github.com/tania-m/romannumeral#package-layout) | [Production usage](https://github.com/tania-m/romannumeral#production-usage) | [Tests](https://github.com/tania-m/romannumeral#tests) | [Dependencies](https://github.com/tania-m/romannumeral#dependencies)
 
 ## Goal
-Provide an API server that can convert decimal integers (e.g. 1, 10, 100, 200) into the roman numeral equivalent. The server offers a route of type http://localhost:8080/romannumeral?query=10 to do so, in which query is holds the value of the integer to convert. 
+Provide a REST API server that can convert decimal integers (e.g. 1, 10, 100, 200) into the roman numeral equivalent. The server offers a route of type http://localhost:8080/romannumeral?query=10 to do so, in which query is holds the value of the integer to convert. 
 
 ## References
 Two resources describe the rules the server will follow for conversions of decimal integers to roman numbers:
