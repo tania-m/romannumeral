@@ -4,21 +4,22 @@
 [Goal](https://github.com/tania-m/romannumeral#goal) | [References](https://github.com/tania-m/romannumeral#references) | [Quickstart](https://github.com/tania-m/romannumeral#quickstart-build-and-run) | [Run in Docker](https://github.com/tania-m/romannumeral#build-a-docker-image-and-run-in-container) | [Run on machine directly](https://github.com/tania-m/romannumeral#run-on-your-machine-no-container) | [Development methodology](https://github.com/tania-m/romannumeral#development-methodology) | [Routes](https://github.com/tania-m/romannumeral#routes) | [Package layout](https://github.com/tania-m/romannumeral#package-layout) | [Production usage](https://github.com/tania-m/romannumeral#production-usage) | [Tests](https://github.com/tania-m/romannumeral#tests) | [Dependencies](https://github.com/tania-m/romannumeral#dependencies)
 
 ## Goal
-Provide an API server that can convert decimal integers (e.g. 10, 100, 200, ...) into the roman numeral equivalent. The server offers a route of type http://localhost:8080/romannumeral?query=10 to do so.
+Provide an API server that can convert decimal integers (e.g. 1, 10, 100, 200) into the roman numeral equivalent. The server offers a route of type http://localhost:8080/romannumeral?query=10 to do so, in which query is holds the value of the integer to convert. 
 
 ## References
-Two resources are important for working on the development of that server. They describe the rules the server will follow for conversions to roman numbers:
+Two resources describe the rules the server will follow for conversions of decimal integers to roman numbers:
 
  - For roman numerals: [Roman Numerals on mathisfun](https://www.mathsisfun.com/roman-numerals.html)
  - For syntax additions to handle large roman numbers: [Roman Numerals for large numbers](http://roman-numerals.20m.com/)
 
-## Quickstart: Build and run
+## Quickstart with Docker
 *Prerequisite: Needs to have Docker installed.*
-You can start using the server immediately by running the docker-compose file at the root of the project. The server will be listening on port 8080 (per default).
+You can build and run the server immediately by running the docker-compose file at the root of the project. 
+Per default, the server will be listening on port 8080.
 
 From the root of the project, to run in background:
 
-    docker-compose up -d --build
+    docker-compose up -d
 Once it is running, you can try out the server by doing ` curl http://localhost:8080/romannumeral?query=42` (or click [http://localhost:8080/romannumeral?query=42](http://localhost:8080/romannumeral?query=42)).
 
 To shutdown the server, from the root of the project run:
@@ -32,11 +33,11 @@ To do so, from the root of the project,  you **first need to build** the Docker 
 
     docker build . --tag localhost:romannumeral
 
-Ten, to run a container based on that image in **background** with the server listening on port 8080:
+Then, to run a container based on the built image in **background** with the server listening on port 8080:
 
     docker run -d -p 8080:8080 localhost:romannumeral
 
-Or to run a container based on that image in **foreground** with the server listening on port 8080:
+Or to run a container based on the built image in **foreground** with the server listening on port 8080:
 
     docker run -p 8080:8080 localhost:romannumeral
 
@@ -46,7 +47,7 @@ Or to run a container based on that image in **foreground** with the server list
 You will need to **install the dependencies** first. From the root of the folder:
 
  - For usage in a dev/test environment: `npm i` 
- - For production use: `npm i --production --only=production`
+ - For production use: `npm i --only=production`
 
 Then, from the root of this project, **run**:    `npm start`
 

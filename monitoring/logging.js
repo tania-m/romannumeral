@@ -3,12 +3,12 @@
 const winston = require('winston');
 
 /**
- * define the custom settings for each transport (file, console)
+ * Define the custom settings for each transport (here only file)
  */
 const options = {
     file: {
         level: 'info',
-        filename: `./logs/server.log`,
+        filename: './logs/server.log',
         handleExceptions: true,
         json: true,
         maxsize: 5242880, // 5MB
@@ -18,7 +18,7 @@ const options = {
 };
 
 /**
- * instantiate a new Winston Logger with the settings defined above
+ * Instantiate a new winston logger with the settings defined above (for logging into files)
  */
 let logger = winston.createLogger({
     transports: [
@@ -27,7 +27,7 @@ let logger = winston.createLogger({
 });
 
 /**
- * create a stream object with a 'write' function that will be used by morgan
+ * Create a stream object with a 'write' function that will be used by morgan to put logged data into files
  */
 logger.stream = {
     write: function(message, encoding) {
