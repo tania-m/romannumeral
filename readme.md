@@ -1,21 +1,24 @@
 
 # Roman numeral conversion
+
+[Goal](https://github.com/tania-m/romannumeral#goal) | [References](https://github.com/tania-m/romannumeral#references) | [Quickstart](https://github.com/tania-m/romannumeral#quickstart-build-and-run) | [Run in Docker](https://github.com/tania-m/romannumeral#build-a-docker-image-and-run-in-container) | [Run on machine directly](https://github.com/tania-m/romannumeral#run-on-your-machine-no-container) | [Development methodology](https://github.com/tania-m/romannumeral#development-methodology) | [Routes](https://github.com/tania-m/romannumeral#routes) | [Package layout](https://github.com/tania-m/romannumeral#package-layout) | [Production usage](https://github.com/tania-m/romannumeral#production-usage) | [Tests](https://github.com/tania-m/romannumeral#tests) | [Dependencies](https://github.com/tania-m/romannumeral#dependencies)
+
 ## Goal
 Provide an API server that can convert decimal integers (e.g. 10, 100, 200, ...) into the roman numeral equivalent. The server offers a route of type http://localhost:8080/romannumeral?query=10 to do so.
 
 ## References
-Two resources helped during development of that server. They describe the rules the server will follow for conversions to roman numbers:
+Two resources are important for working on the development of that server. They describe the rules the server will follow for conversions to roman numbers:
 
  - For roman numerals: [Roman Numerals on mathisfun](https://www.mathsisfun.com/roman-numerals.html)
  - For syntax additions to handle large roman numbers: [Roman Numerals for large numbers](http://roman-numerals.20m.com/)
 
 ## Quickstart: Build and run
 *Prerequisite: Needs to have Docker installed.*
-You can start using the server immediately by running the docker-compose file at the root of the project. The server will be listening on port 8080.
+You can start using the server immediately by running the docker-compose file at the root of the project. The server will be listening on port 8080 (per default).
 
 From the root of the project, run:
 
-    docker-compose up -d
+    docker-compose up -d --build
 Once it is running, you can try out the server by going to http://localhost:8080/romannumeral?query=42. 
 
 To shutdown the server, from the root of the project run:
@@ -48,20 +51,22 @@ You will need to **install the dependencies** first. From the root of the folder
 Then, from the root of this project, **run**:    `npm start`
 
 ## Development methodology
-The development of this server is incremental: functionalities are added, improved and refactored over time in iterations. This is very similar to the Scrum Agile methodology.
-The first focus was to get a base working version (integer to roman conversion) to get a minimum viable product. Then, extend and improve business functionalities, finally monitoring and deployment capabilities.
+The development of this server is incremental: functionalities are added, improved and refactored over time in iterations. This is very similar to the Scrum Agile methodology. Each commit is a small unit of work. 
+The first focus was to get a base working version (integer to roman conversion) to get a minimum viable product. Then, extend and improve business functionalities. In parallel, also work on configurability, monitoring and logging capabilities (non-functional requirements).
 
 All functionalities must be unit tested, especially those used to do the roman numeral conversion (since they are of critical value for this server). Also, integration tests need to be written for added routes and functionalities, to verify that the server is capable of responding to requests as expected.
 
-To finish, API routes need to be documented in the project's swagger file. Code should also be documented.
+To finish, API routes need to be documented in the project's swagger file. Code must also be documented using JSDoc format. Automated documentation generation can then be done using [documentjs](https://documentjs.com/).
 
 ## Routes
 *Detailed route documentation can be found in the swagger/openapi file in the project folder api-documentation.* 
 
 ### Number to roman conversion
 #### Conversion to roman values
-The route http://host/romannumeral?query={integer}.
+The route is of the general form http://host/romannumeral?query={integer}, where query contains the integer to convert.
+
 Example when running on localhost: http://localhosthost/romannumeral?query=50
+
 This route takes a decimal integer as parameter. If the query parameter is within convertible ranges, the server responds with **HTTP status code 200 and a json object** containing the roman number equivalent (value is in UTF-8 for large numbers):
 
     { "roman" : "your_converted_value"}
@@ -70,7 +75,7 @@ This route takes a decimal integer as parameter. If the query parameter is withi
 
 #### Error cases
 ##### Query value is 0
-Setting query parameter to 0 will return an error, since there is no 0 in the roman counting system. The subsequent handling of that case is left to the entity that made the request to the server.
+Setting query parameter to 0 will return an error, since there is no 0 in the roman counting system. The subsequent handling of that case is left to the caller. Here the API signals that 0 is not a roman numeral value.
 
 The server will return a **HTTP status code 422 and a json object** describing the error:
 
@@ -128,7 +133,7 @@ Folders at root of this project:
 
 Files at root of the romannumeral API server project:
 - **settings.env**: default values for some environment values. 
-- **config.js** : reads and sets environment value defined in settings.env.
+- **config.js** : configures environment for the server (reads settings.env and sets up middlewares).
 - **docker-compose.yml**: file to build and run the API server in a Docker container.
 - **Dockerfile**: file to build the Docker image for this project.
 - **package.json**: lists informations about the project and dependencies.
@@ -141,7 +146,7 @@ Currently, only HTTP is supported out of the box. For HTTPS, please use a proxy 
 
 ## Tests
 Tests are available in the **test folder**. 
-There are two kind of tests:
+There are two kind of tests available currently in this project:
  - some testing the conversion functionality without the server capabilities (unit tests).
  - some testing the API server and its routes (integration tests).
  
@@ -169,8 +174,12 @@ To read environment files and configure the server to use them, there is a depen
 Finally, for logging the server uses the express [morgan](https://www.npmjs.com/package/morgan) middleware for console logging and [winston](https://www.npmjs.com/package/winston) to save logs into files.
 
 ### First level dev-dependencies
-THis project has test dependencies: [chai](https://www.npmjs.com/package/chai), [mocha](https://www.npmjs.com/package/mocha) and [supertest](https://www.npmjs.com/package/supertest).
+This project has test dependencies: [chai](https://www.npmjs.com/package/chai), [mocha](https://www.npmjs.com/package/mocha) and [supertest](https://www.npmjs.com/package/supertest).
 Also, a lot of test cases where inspired by the [big-list-of-naughty-strings](https://github.com/minimaxir/big-list-of-naughty-strings).
+
+### Dependency graph
+First-level dependencies and development dependencies bring their own dependencies with them.
+Github provides a [dependency graph](https://github.com/tania-m/romannumeral/network/dependencies) listing all dependencies (first level and their dependencies).
 
 ## Next steps
 Next steps would be to:
