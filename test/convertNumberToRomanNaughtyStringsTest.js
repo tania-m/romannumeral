@@ -1,10 +1,10 @@
 "use strict";
 
-const request = require('supertest');
-
 // mocha does a lot of tests very quickly, so Node may throw warnings about that. 
 // We know it's because of tests, so remove the warning.
-const fixWarningTest = require('events').EventEmitter.defaultMaxListeners = 50;
+const fixWarningTest = require('events').EventEmitter.defaultMaxListeners = 560;
+
+const request = require('supertest');
 
 // tests for naughty strings, most taken from https://github.com/minimaxir/big-list-of-naughty-strings
 
