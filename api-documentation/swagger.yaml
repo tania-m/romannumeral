@@ -60,7 +60,7 @@ paths:
       - "application/json"
       responses:
         200:
-          description: "Server is healthy"
+          description: "Version number"
           schema:
             $ref: "#/definitions/APIInfo"
           
