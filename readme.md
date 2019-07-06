@@ -126,7 +126,7 @@ If a request is made to the server using an unknown route, **HTTP status code 40
 
 ## Package layout
 Folders at root of this project:
-- **api-documentation**: contains the [swagger](https://swagger.io/docs/specification/about/) file describing the API. Also contains a version in markdown, generated based on the swagger file using [swagger-editor](https://editor.swagger.io/) and [turndown's online demo](https://domchristie.github.io/turndown/).
+- **api-documentation**: contains the [swagger](https://swagger.io/docs/specification/about/) file describing the API. Also contains a version in markdown, generated based on the swagger file using [swagger-editor](https://editor.swagger.io/).
 - **code-documentation**: contains HTML version of the code documentation for the romanNumberHandlers. Documentation follows JSDoc format in the code and was automaticaly generated using [documentjs](https://documentjs.com/).
 - **monitoring**: contains code to handle logging.
 - **romanNumberHandlers**: contains the code files necessary to do the roman conversion (also error handling code).
