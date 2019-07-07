@@ -4,10 +4,16 @@ const routes = require('express').Router();
 
 // roman numerals
 const romannumerals = require('./romannumeralRoutes.js');
+/** 
+  * Numeral to roman converter route(s).
+*/
 routes.use('/', romannumerals);
 
 // server health and monitoring
 const monitoring = require('./serverMonitoringRoutes.js');
+/** 
+  * Monitoring/Info route(s).
+*/
 routes.use('/', monitoring);
 
 /** 

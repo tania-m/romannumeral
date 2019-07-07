@@ -3,7 +3,7 @@
 const winston = require('winston');
 
 /**
- * Define the custom settings for each transport (here only file)
+ * Define the custom settings for each transport (here only used for file)
  */
 const options = {
     file: {

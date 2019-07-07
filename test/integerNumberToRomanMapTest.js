@@ -3,7 +3,7 @@
 const chai = require('chai'),
         assert = chai.assert;
         
-const DecimalNumberToRomanMapBuilder = require('./../romanNumberHandlers/decimalToRomanMapBuilder.js');
+const DecimalNumberToRomanMapBuilder = require('./../roman-number-handlers/decimalToRomanMapBuilder.js');
 
 describe('Integer to roman map structure', function () {
     it('should be frozen', function () {

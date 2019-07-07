@@ -1,8 +1,8 @@
 "use strict";
 
-const NumberToRomanConverter = require('./../romanNumberHandlers/numberToRomanConverter.js'),
-        ConverterUpperLimitsEnum = require('./../romanNumberHandlers/conversionUpperLimitsEnum.js'),
-        ConversionErrorTypeEnum = require('./../romanNumberHandlers/conversionErrorCodeEnum.js');
+const NumberToRomanConverter = require('./../roman-number-handlers/numberToRomanConverter.js'),
+        ConverterUpperLimitsEnum = require('./../roman-number-handlers/conversionUpperLimitsEnum.js'),
+        ConversionErrorTypeEnum = require('./../roman-number-handlers/conversionErrorCodeEnum.js');
 
 const routes = require('express').Router();
 

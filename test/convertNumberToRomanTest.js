@@ -3,9 +3,9 @@
 const chai = require('chai'),
         assert = chai.assert;
 
-const NumberToRomanConverter = require('./../romanNumberHandlers/numberToRomanConverter.js'),
-        ConversionError = require('./../romanNumberHandlers/conversionError.js'),
-        ConverterUpperLimitsEnum = require('./../romanNumberHandlers/conversionUpperLimitsEnum.js');
+const NumberToRomanConverter = require('./../roman-number-handlers/numberToRomanConverter.js'),
+        ConversionError = require('./../roman-number-handlers/conversionError.js'),
+        ConverterUpperLimitsEnum = require('./../roman-number-handlers/conversionUpperLimitsEnum.js');
 
 describe('Basic number to roman conversion (0-255)', function () {
     it('should convert 1 to I', function () {
